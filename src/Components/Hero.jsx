@@ -7,11 +7,11 @@ export default function Hero() {
     <section
       id="hero"
       className="relative min-h-screen overflow-hidden bg-[#071512] text-[#F4F1E8]">
-      <div className="pointer-events-none absolute inset-0">
+      {/* <div className="pointer-events-none absolute inset-0">
         <div className="absolute -left-40 top-20 h-96 w-96 rounded-full bg-[#A27A44]/10 blur-[120px]" />
         <div className="absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-[#A27A44]/10 blur-[120px]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-size-[70px_70px]" />
-      </div>
+      </div> */}
 
       <div className="relative mx-auto flex min-h-screen max-w-7xl items-center px-6 py-20 sm:px-8 lg:px-10">
         <div className="grid w-full items-center gap-14 lg:grid-cols-2 lg:gap-20">
