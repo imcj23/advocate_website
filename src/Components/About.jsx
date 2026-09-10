@@ -64,8 +64,8 @@ export default function About() {
 
           {/* Right Content */}
           <div className="grid gap-4">
-            <div className="group flex items-start gap-5 rounded-sm border border-[#DCE7E2] bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#E7F0EC] text-[#1F5C4D] transition duration-300 group-hover:bg-[#123D34] group-hover:text-white">
+            <div className="group flex items-start gap-5 rounded-sm border-2 border-[#A27A44] bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#123D34] text-[#F3F8F1] transition duration-300 ">
                 <Scale size={23} />
               </div>
               <div>
@@ -78,8 +78,8 @@ export default function About() {
                 </p>
               </div>
             </div>
-            <div className="group flex items-start gap-5 rounded-sm border border-[#DCE7E2] bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#E7F0EC] text-[#1F5C4D] transition duration-300 group-hover:bg-[#123D34] group-hover:text-white">
+            <div className="group flex items-start gap-5 rounded-sm border-2 border-[#A27A44] bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#123D34] text-[#F3F8F1] transition duration-300 ">
                 <ShieldCheck size={23} />
               </div>
               <div>
@@ -92,8 +92,8 @@ export default function About() {
                 </p>
               </div>
             </div>
-            <div className="group flex items-start gap-5 rounded-sm border border-[#DCE7E2] bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#E7F0EC] text-[#1F5C4D] transition duration-300 group-hover:bg-[#123D34] group-hover:text-white">
+            <div className="group flex items-start gap-5 rounded-sm border-2 border-[#A27A44] bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#123D34] text-[#F3F8F1] transition duration-300">
                 <Users size={23} />
               </div>
               <div>
