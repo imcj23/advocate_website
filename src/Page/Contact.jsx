@@ -86,10 +86,9 @@ Terima kasih.
             </h1>
 
             <p className="mt-6 max-w-2xl text-sm leading-7 text-white md:text-base">
-              Setiap persoalan hukum membutuhkan pemahaman yang tepat.
-              Sampaikan kebutuhan hukum Anda kepada kami dan dapatkan
-              pendampingan yang profesional, strategis, dan berorientasi pada
-              solusi.
+              Setiap persoalan hukum membutuhkan pemahaman yang tepat. Sampaikan
+              kebutuhan hukum Anda kepada kami dan dapatkan pendampingan yang
+              profesional, strategis, dan berorientasi pada solusi.
             </p>
 
             <div className="mt-10 flex items-center gap-4">
@@ -316,21 +315,28 @@ Terima kasih.
                     Pilih kebutuhan hukum
                   </option>
 
-                  <option value="Korporasi & Komersial">
-                    Korporasi & Komersial
-                  </option>
+                  <option value="Bisnis & Korporasi">Bisnis & Korporasi</option>
 
-                  <option value="Kontrak & Perjanjian">
-                    Kontrak & Perjanjian
+                  <option value="Kontrak & Komersial">
+                    Kontrak & Komersial
                   </option>
 
                   <option value="Penyelesaian Sengketa">
                     Penyelesaian Sengketa
                   </option>
 
-                  <option value="Ketenagakerjaan">Ketenagakerjaan</option>
+                  <option value="Ketenagakerjaan & Hubungan Industrial">
+                    Ketenagakerjaan & Hubungan Industrial
+                  </option>
 
                   <option value="Konsultasi Hukum">Konsultasi Hukum</option>
+                  <option value="Merger & Akusisi">Merger & Akusisi</option>
+                  <option value="Perbankan & Keuanggan">
+                    Perbankan & Keuanggan
+                  </option>
+                  <option value="Perbankan & Keuanggan">
+                    Regulasi & Kepatuhan
+                  </option>
 
                   <option value="Lainnya">Lainnya</option>
                 </select>
