@@ -360,24 +360,17 @@ export default function Practice() {
                     key={item.title}
                     className="group flex min-h-71.25 flex-col border border-white/10 bg-[#001311] p-6 text-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#c9a96e]/50 hover:shadow-xl"
                   >
-                    {/* Icon */}
                     <div className="flex items-start justify-between">
                       <div className="flex h-11 w-11 items-center justify-center border border-[#c9a96e]/40 text-[#c9a96e] transition-all duration-300 group-hover:border-[#c9a96e] group-hover:bg-[#c9a96e] group-hover:text-[#0b2f2a]">
                         <Icon size={20} strokeWidth={1.4} />
                       </div>
                     </div>
-
-                    {/* Title */}
                     <h3 className="mt-7 max-w-57.5 text-sm font-semibold leading-6 tracking-wider text-white">
                       {item.title}
                     </h3>
-
-                    {/* Description */}
                     <p className="mt-3 text-xs leading-6 text-white/70">
                       {item.desc}
                     </p>
-
-                    {/* Detail */}
                     <div className="mt-auto pt-6">
                       <button
                         type="button"
@@ -400,7 +393,7 @@ export default function Practice() {
           </div>
         </section>
 
-        {/* ==================== MODAL ==================== */}
+        {/* modal  */}
         {selectedPractice && (
           <div
             className="fixed inset-0 z-50 flex items-center justify-center bg-[#001311]/80 px-4 py-6 backdrop-blur-sm sm:px-6"
@@ -410,20 +403,16 @@ export default function Practice() {
               className="relative flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden bg-[#F5F6F3] text-[#001311] shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close Button */}
               <button
                 type="button"
                 onClick={() => setSelectedPractice(null)}
-                className="absolute right-5 top-5 z-10 flex h-9 w-9 items-center justify-center border border-[#001311]/10 bg-[#F5F6F3] text-[#001311]/60 transition hover:border-[#A27A44] hover:text-[#A27A44]"
+                className="absolute right-5 top-5 z-10 flex h-9 w-9 items-center justify-center border border-[#001311]/10 bg-[#001311] text-white transition "
                 aria-label="Tutup modal"
               >
                 <X size={17} strokeWidth={1.5} />
               </button>
-
-              {/* Scrollable Content */}
               <div className="overflow-y-auto">
-                {/* Modal Header */}
-                <div className="border-b border-[#001311]/10 px-6 pb-7 pt-8 sm:px-9 sm:pb-8 sm:pt-9">
+                <div className="border-b border-[#001311] px-6 pb-7 pt-8 sm:px-9 sm:pb-8 sm:pt-9">
                   <div className="flex items-start gap-5">
                     <div className="hidden h-12 w-12 shrink-0 items-center justify-center border border-[#A27A44]/50 text-[#A27A44] sm:flex">
                       <selectedPractice.icon
@@ -431,20 +420,16 @@ export default function Practice() {
                         strokeWidth={1.4}
                       />
                     </div>
-
                     <div className="pr-10">
                       <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#A27A44]">
                         Layanan Hukum
                       </p>
-
                       <h2 className="mt-2 font-serif text-2xl font-medium leading-tight sm:text-3xl">
                         {selectedPractice.title}
                       </h2>
                     </div>
                   </div>
                 </div>
-
-                {/* Yang Kami Lakukan */}
                 <div className="px-6 py-7 sm:px-9 sm:py-8">
                   <div className="mb-5 flex items-center gap-3">
                     <span className="h-px w-8 bg-[#A27A44]" />
@@ -453,7 +438,6 @@ export default function Practice() {
                       Yang Kami Lakukan
                     </h3>
                   </div>
-
                   <div className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
                     {selectedPractice.services.map((service, index) => (
                       <div
@@ -471,8 +455,6 @@ export default function Practice() {
                     ))}
                   </div>
                 </div>
-
-                {/* Pendekatan Kami */}
                 <div className="bg-[#001311] px-6 py-8 text-white sm:px-9">
                   <div className="mb-5 flex items-center gap-3">
                     <span className="h-px w-8 bg-[#C9A96E]" />
@@ -481,13 +463,10 @@ export default function Practice() {
                       Pendekatan Kami
                     </h3>
                   </div>
-
                   <p className="max-w-2xl text-sm leading-7 text-white/70">
                     {selectedPractice.approach}
                   </p>
                 </div>
-
-                {/* Masalah Umum */}
                 <div className="px-6 py-7 sm:px-9 sm:py-8">
                   <div className="mb-5 flex items-center gap-3">
                     <span className="h-px w-8 bg-[#A27A44]" />
@@ -496,7 +475,6 @@ export default function Practice() {
                       Masalah Umum yang Kami Tangani
                     </h3>
                   </div>
-
                   <div className="grid gap-3 sm:grid-cols-2">
                     {selectedPractice.issues.map((issue, index) => (
                       <div
@@ -511,7 +489,6 @@ export default function Practice() {
                   </div>
                 </div>
 
-                {/* Modal Footer */}
                 <div className="flex flex-col gap-4 border-t border-[#001311]/10 px-6 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-9">
                   <span className="text-[9px] uppercase tracking-[0.2em] text-[#001311]/40">
                     Konsultasi Hukum Profesional
