@@ -16,43 +16,43 @@ import Law3 from "../assets/law2.jpg";
 const practiceData = [
   {
     icon: BriefcaseBusiness,
-    title: "BUSINESS & CORPORATE",
-    desc: "Advising on corporate structure, governance, compliance, shareholder matters, joint ventures and other corporate arrangements.",
+    title: "BISNIS & KORPORASI",
+    desc: "Memberikan nasihat hukum terkait struktur perusahaan, tata kelola, kepatuhan, pemegang saham, usaha patungan, serta berbagai pengaturan korporasi lainnya.",
   },
   {
     icon: FileText,
-    title: "CONTRACTS & COMMERCIAL",
-    desc: "Drafting, reviewing and negotiating a wide range of commercial contracts and agreements tailored to clients' objectives.",
+    title: "KONTRAK & KOMERSIAL",
+    desc: "Menyusun, meninjau, dan menegosiasikan berbagai perjanjian serta kontrak komersial yang disesuaikan dengan kepentingan dan tujuan klien.",
   },
   {
     icon: Scale,
-    title: "DISPUTE RESOLUTION",
-    desc: "Representing clients in litigation, arbitration and alternative dispute resolution with a focus on effective and efficient solutions.",
+    title: "PENYELESAIAN SENGKETA",
+    desc: "Mewakili klien dalam proses litigasi, arbitrase, maupun penyelesaian sengketa alternatif dengan mengutamakan solusi yang efektif dan efisien.",
   },
   {
     icon: Users,
-    title: "EMPLOYMENT & INDUSTRIAL RELATIONS",
-    desc: "Providing advice on employment matters, industrial relations, workplace policies and dispute resolution.",
+    title: "KETENAGAKERJAAN & HUBUNGAN INDUSTRIAL",
+    desc: "Memberikan konsultasi hukum mengenai ketenagakerjaan, hubungan industrial, kebijakan perusahaan, serta penyelesaian perselisihan ketenagakerjaan.",
   },
   {
     icon: ClipboardCheck,
-    title: "LEGAL OPINION & DUE DILIGENCE",
-    desc: "Delivering legal opinions and conducting legal due diligence for transactions and business decisions.",
+    title: "PENDAPAT HUKUM & UJI TUNTAS",
+    desc: "Menyusun pendapat hukum dan melakukan uji tuntas hukum sebagai dasar dalam transaksi, pengambilan keputusan, dan kebutuhan bisnis klien.",
   },
   {
     icon: Building2,
-    title: "MERGERS & ACQUISITIONS",
-    desc: "Advising on mergers, acquisitions, divestments and corporate restructurings with a focus on risk management and value protection.",
+    title: "MERGER & AKUISISI",
+    desc: "Memberikan nasihat hukum terkait merger, akuisisi, divestasi, dan restrukturisasi perusahaan dengan fokus pada pengelolaan risiko dan perlindungan kepentingan klien.",
   },
   {
     icon: Landmark,
-    title: "BANKING & FINANCE",
-    desc: "Providing legal counsel on financing transactions, loan agreements, security documents and regulatory compliance.",
+    title: "PERBANKAN & KEUANGAN",
+    desc: "Memberikan layanan hukum terkait transaksi pembiayaan, perjanjian kredit, dokumen jaminan, serta kepatuhan terhadap ketentuan perbankan dan keuangan.",
   },
   {
     icon: ShieldCheck,
-    title: "REGULATORY & COMPLIANCE",
-    desc: "Assisting clients in navigating regulatory requirements and ensuring compliance with applicable laws and regulations.",
+    title: "REGULASI & KEPATUHAN",
+    desc: "Membantu klien memahami dan memenuhi ketentuan peraturan perundang-undangan serta memastikan kegiatan usaha berjalan sesuai dengan regulasi yang berlaku.",
   },
 ];
 
@@ -145,30 +145,20 @@ export default function Practice() {
                 return (
                   <div
                     key={item.title}
-                    className="group flex min-h-[285px] flex-col border border-white/10 bg-[#0b2f2a] p-6 text-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#c9a96e]/50 hover:shadow-xl"
+                    className="group flex min-h-71.25 flex-col border border-white/10 bg-[#001311] p-6 text-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#c9a96e]/50 hover:shadow-xl"
                   >
                     {/* TOP */}
                     <div className="flex items-start justify-between">
                       <div className="flex h-11 w-11 items-center justify-center border border-[#c9a96e]/40 text-[#c9a96e] transition-all duration-300 group-hover:border-[#c9a96e] group-hover:bg-[#c9a96e] group-hover:text-[#0b2f2a]">
                         <Icon size={20} strokeWidth={1.4} />
                       </div>
-
-                      <span className="text-[10px] tracking-[0.2em] text-white/20">
-                        LEGAL
-                      </span>
                     </div>
-
-                    {/* TITLE */}
-                    <h3 className="mt-7 max-w-[230px] text-sm font-semibold leading-6 tracking-[0.05em] text-white">
+                    <h3 className="mt-7 max-w-57.5 text-sm font-semibold leading-6 tracking-wider text-white">
                       {item.title}
                     </h3>
-
-                    {/* DESCRIPTION */}
-                    <p className="mt-3 text-xs leading-6 text-white/50">
+                    <p className="mt-3 text-xs leading-6 text-white">
                       {item.desc}
                     </p>
-
-                    {/* BUTTON */}
                     <div className="mt-auto pt-6">
                       <button
                         type="button"

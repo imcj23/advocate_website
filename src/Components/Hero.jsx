@@ -1,12 +1,15 @@
+import { useNavigate } from "react-router";
 import { ArrowRight, Scale, ShieldCheck } from "lucide-react";
 import Lawpict from "../assets/law2.jpg";
-import { scrollToSection } from "../utils/scrollTo";
+// import { scrollToSection } from "../utils/scrollTo";
 
 export default function Hero() {
+  const navigate = useNavigate();
   return (
     <section
       id="hero"
-      className="relative min-h-screen overflow-hidden bg-[#071512] text-[#F4F1E8]">
+      className="relative min-h-screen overflow-hidden bg-[#071512] text-[#F4F1E8]"
+    >
       {/* <div className="pointer-events-none absolute inset-0">
         <div className="absolute -left-40 top-20 h-96 w-96 rounded-full bg-[#A27A44]/10 blur-[120px]" />
         <div className="absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-[#A27A44]/10 blur-[120px]" />
@@ -25,9 +28,7 @@ export default function Hero() {
 
             <h1 className="max-w-3xl font-serif text-5xl font-semibold leading-[1.08] tracking-tight text-[#F4F1E8] sm:text-6xl lg:text-7xl">
               The Justice and
-              <span className="block text-[#B8925A]">
-                Legal Protection
-              </span>
+              <span className="block text-[#B8925A]">Legal Protection</span>
               You Deserve.
             </h1>
 
@@ -48,11 +49,10 @@ export default function Hero() {
             {/* Buttons */}
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
               <button
-                onClick={() => scrollToSection("daftar")}
+                onClick={() => navigate("/contact")}
                 className="group inline-flex items-center justify-center gap-3 rounded-sm bg-[#A27A44] px-7 py-4 text-sm font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:bg-[#B8925A] hover:shadow-[0_10px_30px_rgba(162,122,68,0.25)]"
               >
                 Discuss Your Case
-
                 <ArrowRight
                   size={18}
                   className="transition-transform duration-300 group-hover:translate-x-1"
@@ -60,7 +60,7 @@ export default function Hero() {
               </button>
 
               <button
-                onClick={() => scrollToSection("paket")}
+                onClick={() => navigate("/practice")}
                 className="inline-flex items-center justify-center gap-3 rounded-sm border border-[#B8925A]/40 px-7 py-4 text-sm font-semibold uppercase tracking-wider text-[#D6C8A9] transition-all duration-300 hover:border-[#B8925A] hover:bg-[#B8925A]/10"
               >
                 Our Services
@@ -78,21 +78,17 @@ export default function Hero() {
 
               <div className="flex items-center gap-2.5">
                 <Scale className="h-5 w-5 text-[#B8925A]" />
-                <span className="text-sm text-[#AEB8B2]">
-                  Justice Focused
-                </span>
+                <span className="text-sm text-[#AEB8B2]">Justice Focused</span>
               </div>
             </div>
           </div>
 
           {/* RIGHT IMAGE */}
           <div className="relative order-1 flex justify-center lg:order-2">
-
             {/* Decorative frame */}
             {/* <div className="absolute -right-3 -top-3 h-full w-full max-w-xl border border-[#B8925A]/30 sm:-right-5 sm:-top-5" /> */}
 
             <div className="relative w-full max-w-xl overflow-hidden">
-
               {/* Image */}
               <img
                 src={Lawpict}

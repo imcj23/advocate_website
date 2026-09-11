@@ -3,6 +3,7 @@ import Landingpage from "./Page/Landingpage";
 import About from './Page/About'
 import Profile from './Page/Profile'
 import Practice from "./Page/Practice";
+import Contact from "./Page/Contact";
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/practice" element={<Practice />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
   )

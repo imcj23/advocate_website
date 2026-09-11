@@ -1,14 +1,9 @@
-import {
-  ArrowUpRight,
-  Mail,
-  MapPin,
-  Phone,
-  Scale,
-} from "lucide-react";
-import { scrollToSection } from "../utils/scrollTo";
+import { useNavigate } from "react-router";
+import { ArrowUpRight, Mail, MapPin, Phone, Scale } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const navigate = useNavigate();
 
   return (
     <footer className="bg-[#001311] text-white">
@@ -40,12 +35,15 @@ export default function Footer() {
             </p>
 
             <button
-              onClick={() => scrollToSection("contact")}
-              className="group mt-7 inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-medium text-white transition duration-300 hover:bg-white hover:text-[#001311]"
+              onClick={() => {
+                navigate("/contact");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className="inline-flex mt-2 items-center gap-2 rounded-md bg-[#A27A44] px-5 py-3 text-sm font-semibold text-white transition duration-300 "
             >
               Konsultasi Hukum
               <ArrowUpRight
-                size={16}
+                size={17}
                 className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
               />
             </button>
@@ -59,28 +57,28 @@ export default function Footer() {
 
             <nav className="flex flex-col items-start gap-3">
               <button
-                onClick={() => scrollToSection("hero")}
+                onClick={() => navigate("/")}
                 className="text-sm text-white/65 transition hover:text-white"
               >
                 Beranda
               </button>
 
               <button
-                onClick={() => scrollToSection("about")}
+                onClick={() => navigate("/about")}
                 className="text-sm text-white/65 transition hover:text-white"
               >
                 Tentang Kami
               </button>
 
               <button
-                onClick={() => scrollToSection("services")}
+                onClick={() => navigate("/practice")}
                 className="text-sm text-white/65 transition hover:text-white"
               >
                 Layanan Hukum
               </button>
 
               <button
-                onClick={() => scrollToSection("contact")}
+                onClick={() => navigate("/contact")}
                 className="text-sm text-white/65 transition hover:text-white"
               >
                 Kontak
@@ -116,9 +114,7 @@ export default function Footer() {
                   className="shrink-0 text-white/45"
                 />
 
-                <p className="text-sm text-white/65">
-                  +62 812 3456 7890
-                </p>
+                <p className="text-sm text-white/65">+62 812 3456 7890</p>
               </div>
 
               <div className="flex items-center gap-3">
@@ -128,9 +124,7 @@ export default function Footer() {
                   className="shrink-0 text-white/45"
                 />
 
-                <p className="text-sm text-white/65">
-                  info@lawfirm.com
-                </p>
+                <p className="text-sm text-white/65">info@lawfirm.com</p>
               </div>
             </div>
           </div>
@@ -141,11 +135,9 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="flex flex-col gap-4 text-xs text-white/35 md:flex-row md:items-center md:justify-between">
-          <p>
-            © {currentYear} Law Firm. All rights reserved.
-          </p>
+          <p>© {currentYear} Law Firm. All rights reserved.</p>
 
-          <div className="flex gap-5">
+          {/* <div className="flex gap-5">
             <button className="transition hover:text-white/70">
               Privacy Policy
             </button>
@@ -153,7 +145,7 @@ export default function Footer() {
             <button className="transition hover:text-white/70">
               Terms of Service
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

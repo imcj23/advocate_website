@@ -44,6 +44,15 @@ export default function FranchiseNavbar() {
     });
   };
 
+  const whatsappNumber = "6288268853638";
+  const message = "Haloo, saya ingin berdiskusi"
+
+  const handleWhatsAppClick = () => {
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/\D/g, "")}?text=${encodedMessage}`;
+    window.open(whatsappUrl, "_blank");
+  };
+
   return (
     <header
       className={`sticky top-0 z-50 w-full border-b transition-colors duration-300 ${
@@ -94,7 +103,7 @@ export default function FranchiseNavbar() {
 
           <div className="flex items-center gap-2">
             <button
-              onClick={() => go("/contact")}
+              onClick={handleWhatsAppClick}
               className="hidden items-center gap-2 rounded-xs border border-[#A27A44] bg-transparent px-5 py-2.5 text-sm font-semibold text-[#F3F8F1] transition-all duration-300 hover:bg-[#A27A44] hover:text-[#001311] sm:inline-flex"
             >
               Discuss Now
@@ -144,7 +153,7 @@ export default function FranchiseNavbar() {
             })}
           </nav>
           <button
-            onClick={() => go("/contact")}
+            onClick={handleWhatsAppClick}
             className="mt-5 flex w-full items-center justify-center gap-2 rounded-xs border border-[#A27A44] bg-transparent py-3.5 text-sm font-semibold text-[#F3F8F1] transition-colors hover:bg-[#A27A44] hover:text-[#001311]"
           >
             Discuss Now

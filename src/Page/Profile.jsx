@@ -83,38 +83,43 @@ export default function Profile() {
 
   const experiences = [
     {
-      title: "Corporate Structuring and Commercial Transactions",
-      category: "Corporate & Commercial",
+      title: "Penataan Struktur Perusahaan dan Transaksi Komersial",
+      category: "Korporasi & Komersial",
       description:
-        "Pendampingan klien dalam penataan struktur perusahaan dan berbagai transaksi komersial.",
+        "Pendampingan klien dalam penataan struktur perusahaan serta berbagai transaksi komersial.",
     },
+
     {
-      title: "Shareholders’ Agreements and Joint Ventures",
-      category: "Corporate & Commercial",
+      title: "Perjanjian Pemegang Saham dan Usaha Patungan",
+      category: "Korporasi & Komersial",
       description:
-        "Penyusunan dan pendampingan hukum terkait perjanjian pemegang saham serta kerja sama joint venture.",
+        "Penyusunan dan pendampingan hukum terkait perjanjian pemegang saham serta kerja sama usaha patungan.",
     },
+
     {
-      title: "Contract Drafting, Review and Negotiation",
-      category: "Contract & Commercial",
+      title: "Penyusunan, Peninjauan, dan Negosiasi Kontrak",
+      category: "Kontrak & Komersial",
       description:
-        "Penyusunan, peninjauan, dan negosiasi berbagai perjanjian untuk melindungi kepentingan klien.",
+        "Penyusunan, peninjauan, dan negosiasi berbagai perjanjian untuk melindungi kepentingan hukum klien.",
     },
+
     {
-      title: "Business Disputes and Commercial Litigation",
-      category: "Dispute Resolution",
+      title: "Sengketa Bisnis dan Litigasi Komersial",
+      category: "Penyelesaian Sengketa",
       description:
-        "Pendampingan dan representasi hukum dalam sengketa bisnis serta proses litigasi komersial.",
+        "Pendampingan dan representasi hukum dalam penyelesaian sengketa bisnis serta proses litigasi komersial.",
     },
+
     {
-      title: "Employment and Industrial Relations Matters",
-      category: "Employment",
+      title: "Ketenagakerjaan dan Hubungan Industrial",
+      category: "Ketenagakerjaan",
       description:
-        "Pendampingan hukum dalam permasalahan ketenagakerjaan dan hubungan industrial.",
+        "Pendampingan hukum dalam berbagai permasalahan ketenagakerjaan dan hubungan industrial.",
     },
+
     {
-      title: "Legal Due Diligence and Legal Opinion",
-      category: "Legal Advisory",
+      title: "Uji Tuntas Hukum dan Pendapat Hukum",
+      category: "Konsultasi Hukum",
       description:
         "Pemeriksaan aspek hukum dan penyusunan pendapat hukum untuk mengidentifikasi risiko serta memberikan rekomendasi strategis.",
     },
@@ -356,7 +361,6 @@ export default function Profile() {
             </div>
           </div>
         </section>
-       
 
         {/* <section className="bg-[#e7ebe7]">
           <div className="mx-auto max-w-7xl px-6 py-9 lg:px-8">

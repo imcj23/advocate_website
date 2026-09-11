@@ -4,9 +4,9 @@ import {
   Scale,
   Target,
   //   Lightbulb,
-  Phone,
-  Mail,
-  Building2,
+    // Phone,
+    // Mail,
+    // Building2,
   ShieldCheck,
   UserGroup,
   Handshake,
@@ -286,17 +286,17 @@ export default function About() {
             </p>
 
             <h2 className="mt-4 text-3xl font-semibold sm:text-4xl lg:text-5xl text-[#F3F8F1]">
-              [Nama Founder]
+              [Nama Client]
             </h2>
 
             <p className="mt-2 text-sm font-medium text-[#F3F8F1]">
-              Managing Partner
+              Posisi Client
             </p>
 
             <div className="my-8 h-px w-16 bg-[#b59b62]" />
 
             <p className="text-lg leading-8 text-[#F3F8F1]">
-              “[Nama Founder] seorang ..................................., yang
+              “[Nama Client] seorang ..................................., yang
               memberikan nasihat kepada klien mengenai masalah bisnis,
               korporasi, dan sengketa.”
             </p>
