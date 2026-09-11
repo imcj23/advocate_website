@@ -439,50 +439,8 @@ export default function Insight() {
       </section>
 
       {/* =====================================================
-          CTA
-      ====================================================== */}
-      <section className="relative overflow-hidden bg-[#001311] px-6 py-20 md:px-10 lg:px-16 lg:py-24">
-        {/* Decorative number */}
-        <div className="absolute -right-5 -top-14 hidden select-none text-[220px] font-light leading-none -tracking-widest text-white/2.5 lg:block">
-          02
-        </div>
-
-        <div className="relative z-10 mx-auto max-w-7xl">
-          <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
-            <div className="max-w-2xl">
-              <div className="mb-5 flex items-center gap-3">
-                <span className="h-px w-9 bg-[#8A7548]" />
-
-                <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#B7C3BD]">
-                  Legal Assistance
-                </span>
-              </div>
-
-              <h2 className="text-3xl font-medium leading-tight tracking-[-0.03em] text-[#F3F8F1] md:text-5xl">
-                Have a legal
-                <br />
-                <span className="text-[#8A7548]">question?</span>
-              </h2>
-
-              <p className="mt-6 max-w-xl text-sm leading-7 text-[#AEBDB6] md:text-base">
-                Setiap persoalan hukum memiliki karakteristik yang berbeda.
-                Konsultasikan kebutuhan hukum Anda bersama tim kami.
-              </p>
-            </div>
-
-            <button className="group flex w-fit items-center gap-5 border border-[#65766E] px-6 py-4 text-xs font-semibold uppercase tracking-[0.12em] text-white transition duration-300 hover:border-[#8A7548] hover:bg-[#8A7548]">
-              Discuss Your Matter
-              <span className="flex h-7 w-7 items-center justify-center border border-white/30 transition-transform duration-300 group-hover:translate-x-1">
-                <ArrowUpRight size={14} />
-              </span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* =====================================================
           ARTICLE MODAL
-      ====================================================== */}
+      =========================================aa============= */}
       {selectedArticle && (
         <div
           className="fixed inset-0 z-100 flex items-center justify-center bg-[#001311]/80 px-4 py-5 backdrop-blur-md md:px-8"
