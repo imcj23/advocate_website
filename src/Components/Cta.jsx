@@ -45,7 +45,7 @@ export default function CTA() {
           <div className="lg:flex lg:justify-end">
             <Link
               to="/contact"
-              className="group inline-flex w-full items-center justify-between gap-5 border border-[#C9A96E]/60 bg-[#A27A44] px-5 py-4 text-xs font-semibold uppercase tracking-widest text-white transition-all duration-300 hover:border-[#C9A96E] hover:bg-[#C9A96E] lg:w-auto lg:min-w-[230px]"
+              className="group inline-flex w-full items-center justify-between gap-5 border border-[#C9A96E]/60 bg-[#A27A44] px-5 py-4 text-xs font-semibold uppercase tracking-widest text-white transition-all duration-300 hover:border-[#C9A96E] hover:bg-[#C9A96E] lg:w-auto lg:min-w-57.5"
             >
               <span>Konsultasi Sekarang</span>
 
