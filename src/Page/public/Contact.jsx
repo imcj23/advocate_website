@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { ArrowUpRight, Mail, MapPin, Phone, Clock, Scale } from "lucide-react";
-import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
-import Discuss from "../assets/discuss.jpg";
+import Navbar from "../../Components/Navbar";
+import Footer from "../../Components/Footer";
+import Discuss from "../../assets/discuss.jpg";
 
 export default function Contact() {
   const whatsappNumber = "6282268853638";

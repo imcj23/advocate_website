@@ -7,9 +7,9 @@ import {
   Clock3,
   Tag,
 } from "lucide-react";
-import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
-import background from "../assets/insight.jpg";
+import Navbar from "../../Components/Navbar";
+import Footer from "../../Components/Footer";
+import background from "../../assets/insight.jpg";
 
 const insightData = [
   {

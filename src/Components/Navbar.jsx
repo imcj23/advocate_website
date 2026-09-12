@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { useNavigate, useLocation } from "react-router";
-import Logo from "../assets/law.png";
+import Logo from "../assets/logo (1).png";
 
 const navItems = [
   { path: "/", label: "Home" },
@@ -45,7 +45,7 @@ export default function FranchiseNavbar() {
   };
 
   const whatsappNumber = "6288268853638";
-  const message = "Haloo, saya ingin berdiskusi"
+  const message = "Haloo, saya ingin berdiskusi";
 
   const handleWhatsAppClick = () => {
     const encodedMessage = encodeURIComponent(message);
@@ -66,18 +66,19 @@ export default function FranchiseNavbar() {
           <button
             onClick={() => go("/")}
             className="flex items-center gap-2.5"
-            aria-label="Advocate & Legal Consultants">
+            aria-label="Advocate & Legal Consultants"
+          >
             <img
               src={Logo}
               alt="Advocate & Legal Consultants"
-              className="h-8 w-8 object-contain sm:h-9 sm:w-9"
+              className="h-10 w-10 object-contain sm:h-12 sm:w-12"
             />
             <span className="flex flex-col text-left leading-none">
-              <span className="text-[15px] font-semibold tracking-tight text-stone-50 sm:text-base">
-                Advocate & Legal
+              <span className="text-[15px] uppercase font-semibold tracking-tight text-stone-50 sm:text-base">
+                Law Office
               </span>
               <span className="mt-1 text-[10px] font-medium uppercase tracking-[0.28em] text-stone-50">
-                Consultants
+                Business · Corporate · Dispute
               </span>
             </span>
           </button>

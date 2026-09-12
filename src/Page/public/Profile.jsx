@@ -1,5 +1,5 @@
-import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
+import Navbar from "../../Components/Navbar";
+import Footer from "../../Components/Footer";
 import {
   ArrowUpRight,
   BriefcaseBusiness,
@@ -12,7 +12,7 @@ import {
   Users,
 } from "lucide-react";
 
-import User from "../assets/user.jpeg";
+import User from "../../assets/user.jpeg";
 
 export default function Profile() {
   const practiceFocus = [

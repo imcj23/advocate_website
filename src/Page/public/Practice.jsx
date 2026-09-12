@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
+import Navbar from "../../Components/Navbar";
+import Footer from "../../Components/Footer";
 import {
   BriefcaseBusiness,
   FileText,
@@ -14,7 +14,7 @@ import {
   X,
   Check,
 } from "lucide-react";
-import Law3 from "../assets/law2.jpg";
+import Law3 from "../../assets/law2.jpg";
 
 const practiceData = [
   {
@@ -309,15 +309,14 @@ export default function Practice() {
               <h1 className="font-serif text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
                 Saran Hukum Praktis
                 <br />
-                Fokus Kepada{" "}
-                <span className="text-[#A27A44]">Hasil</span>
+                Fokus Kepada <span className="text-[#A27A44]">Hasil</span>
               </h1>
 
               <p className="mt-6 max-w-xl text-sm leading-7 text-white/65 md:text-base">
-                Kantor Hukum ....... memberikan nasihat hukum yang strategis
-                dan praktis dalam berbagai masalah bisnis, perusahaan, dan
-                sengketa. Kami membantu klien menghadapi kompleksitas hukum
-                dan mencapai hasil yang efektif.
+                Kantor Hukum ....... memberikan nasihat hukum yang strategis dan
+                praktis dalam berbagai masalah bisnis, perusahaan, dan sengketa.
+                Kami membantu klien menghadapi kompleksitas hukum dan mencapai
+                hasil yang efektif.
               </p>
             </div>
           </div>
@@ -378,7 +377,6 @@ export default function Practice() {
                         className="group/button flex items-center gap-2 border-b border-[#c9a96e]/50 pb-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#c9a96e] transition-all duration-300 hover:border-[#c9a96e] hover:text-white"
                       >
                         Detail
-
                         <ArrowUpRight
                           size={14}
                           strokeWidth={1.4}
@@ -415,10 +413,7 @@ export default function Practice() {
                 <div className="border-b border-[#001311] px-6 pb-7 pt-8 sm:px-9 sm:pb-8 sm:pt-9">
                   <div className="flex items-start gap-5">
                     <div className="hidden h-12 w-12 shrink-0 items-center justify-center border border-[#A27A44]/50 text-[#A27A44] sm:flex">
-                      <selectedPractice.icon
-                        size={22}
-                        strokeWidth={1.4}
-                      />
+                      <selectedPractice.icon size={22} strokeWidth={1.4} />
                     </div>
                     <div className="pr-10">
                       <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#A27A44]">
@@ -500,7 +495,6 @@ export default function Practice() {
                     className="group flex items-center justify-center gap-2 bg-[#001311] px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.15em] text-white transition hover:bg-[#A27A44]"
                   >
                     Tutup
-
                     <ArrowUpRight
                       size={14}
                       strokeWidth={1.5}
