@@ -16,6 +16,11 @@ import {
   Building2,
   Users,
   CheckCircle2,
+  Landmark,
+  ShieldCheck,
+  FileText,
+  GitMerge,
+  ClipboardCheck,
 } from "lucide-react";
 
 const API_URL = "http://localhost:3500";
@@ -24,14 +29,20 @@ const API_URL = "http://localhost:3500";
 // ICON PRACTICE
 // =====================================================
 
-const practiceIcons = [
+const practiceIconMap = {
   BriefcaseBusiness,
   SquareText,
   Scale,
   UserGroup,
   Gavel,
   Building2,
-];
+  Users,
+  Landmark,
+  ShieldCheck,
+  FileText,
+  GitMerge,
+  ClipboardCheck,
+};
 
 // =====================================================
 // HELPER
@@ -134,13 +145,51 @@ const getImageUrl = (foto) => {
 };
 
 // =====================================================
+// GET PRACTICE ICON
+// =====================================================
+
+const getPracticeIcon = (iconName, index) => {
+  if (iconName && typeof iconName === "string") {
+    const cleanName = iconName.trim();
+
+    if (practiceIconMap[cleanName]) {
+      return practiceIconMap[cleanName];
+    }
+  }
+
+  // fallback jika icon dari backend kosong
+  const fallbackIcons = [
+    BriefcaseBusiness,
+    SquareText,
+    Scale,
+    UserGroup,
+    Gavel,
+    Building2,
+    Landmark,
+    ShieldCheck,
+  ];
+
+  return fallbackIcons[index % fallbackIcons.length];
+};
+
+// =====================================================
 // COMPONENT
 // =====================================================
 
 export default function Profile() {
   const [profile, setProfile] = useState(null);
+
+  // ===================================================
+  // PRACTICE STATE
+  // ===================================================
+
+  const [practices, setPractices] = useState([]);
+
   const [loading, setLoading] = useState(true);
+  const [loadingPractice, setLoadingPractice] = useState(true);
+
   const [errorMessage, setErrorMessage] = useState("");
+  const [practiceError, setPracticeError] = useState("");
 
   // ===================================================
   // GET PROFILE
@@ -149,7 +198,13 @@ export default function Profile() {
   useEffect(() => {
     // eslint-disable-next-line react-hooks/immutability
     fetchProfile();
+    // eslint-disable-next-line react-hooks/immutability
+    fetchPractices();
   }, []);
+
+  // ===================================================
+  // GET ADVOCATE PROFILE
+  // ===================================================
 
   const fetchProfile = async () => {
     try {
@@ -182,7 +237,6 @@ export default function Profile() {
         throw new Error("Data advocate tidak ditemukan dari backend.");
       }
 
-      console.log("PRACTICE FOCUS:", advocate.practice_focus);
       console.log("EDUCATION:", advocate.education);
       console.log("EXPERIENCE:", advocate.experience);
       console.log("ADMISSION:", advocate.admission);
@@ -204,8 +258,6 @@ export default function Profile() {
 
         tagline: advocate.tagline || "",
         bio: advocate.bio || "",
-
-        practice_focus: normalizeArray(advocate.practice_focus),
 
         education: normalizeArray(advocate.education),
 
@@ -231,58 +283,103 @@ export default function Profile() {
   };
 
   // ===================================================
+  // GET PRACTICE
+  // ===================================================
+
+  const fetchPractices = async () => {
+    try {
+      setLoadingPractice(true);
+      setPracticeError("");
+
+      const response = await fetch(`${API_URL}/practice`);
+
+      const result = await response.json();
+
+      console.log("=================================");
+      console.log("PUBLIC PRACTICE RESPONSE");
+      console.log(result);
+      console.log("=================================");
+
+      if (!response.ok) {
+        throw new Error(result.message || "Gagal mengambil data practice.");
+      }
+
+      /*
+        Bisa menerima beberapa bentuk response backend:
+
+        1.
+        {
+          data: [...]
+        }
+
+        2.
+        {
+          practices: [...]
+        }
+
+        3.
+        [...]
+      */
+
+      const practiceData = result?.data || result?.practices || result || [];
+
+      if (!Array.isArray(practiceData)) {
+        throw new Error("Format data practice dari backend tidak valid.");
+      }
+
+      /*
+        HANYA mengambil:
+        - nama
+        - deskripsi
+        - icon
+      */
+
+      const formattedPractices = practiceData
+        .map((item, index) => {
+          if (!item || typeof item !== "object") {
+            return null;
+          }
+
+          return {
+            id: item.id || index,
+
+            nama: item.nama || item.name || "",
+
+            deskripsi: item.deskripsi || item.description || "",
+
+            icon: item.icon || "",
+          };
+        })
+        .filter((item) => item.nama || item.deskripsi);
+
+      console.log("PRACTICE YANG DIGUNAKAN:", formattedPractices);
+
+      setPractices(formattedPractices);
+    } catch (error) {
+      console.error("GET PRACTICE ERROR:", error);
+
+      setPracticeError(error.message || "Gagal mengambil data practice.");
+    } finally {
+      setLoadingPractice(false);
+    }
+  };
+
+  // ===================================================
   // PRACTICE FOCUS
   // ===================================================
 
   const practiceFocus = useMemo(() => {
-    if (!profile) return [];
+    return practices.map((item, index) => {
+      const Icon = getPracticeIcon(item.icon, index);
 
-    return profile.practice_focus
-      .map((item, index) => {
-        const Icon = practiceIcons[index % practiceIcons.length];
-
-        if (typeof item === "string") {
-          return {
-            icon: Icon,
-            title: item,
-            description: "",
-          };
-        }
-
-        if (item && typeof item === "object") {
-          const title =
-            getField(item, [
-              "title",
-              "name",
-              "nama",
-              "judul",
-              "practice",
-              "area",
-              "bidang",
-            ]) || "Practice Area";
-
-          const description =
-            getField(item, [
-              "description",
-              "deskripsi",
-              "desc",
-              "detail",
-              "content",
-              "keterangan",
-            ]) || "";
-
-          return {
-            icon: Icon,
-            title,
-            description,
-          };
-        }
-
-        return null;
-      })
-      .filter(Boolean)
-      .filter((item) => item.title || item.description);
-  }, [profile]);
+      return {
+        id: item.id,
+        icon: Icon,
+        title: item.nama,
+        description: item.deskripsi,
+      };
+    });
+  }, [practices]);
 
   // ===================================================
   // EDUCATION
@@ -557,7 +654,7 @@ export default function Profile() {
   }
 
   // ===================================================
-  // ERROR
+  // ERROR PROFILE
   // ===================================================
 
   if (!profile || errorMessage) {
@@ -586,17 +683,13 @@ export default function Profile() {
     );
   }
 
-  // ===================================================
-  // PAGE
-  // ===================================================
-
   return (
     <>
       <Navbar />
 
       <main className="bg-[#f5f6f3] text-[#0b2f2a]">
         {/* =================================================
-            HERO
+            PROFILE HERO
         ================================================= */}
 
         <section className="bg-[#001311] text-[#f5f6f3]">
@@ -674,13 +767,35 @@ export default function Profile() {
             PRACTICE FOCUS
         ================================================= */}
 
-        {practiceFocus.length > 0 && (
+        {loadingPractice ? (
+          <section className="bg-white">
+            <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+              <div className="flex items-center gap-3 text-[#68716d]">
+                <Loader2 size={18} className="animate-spin" />
+
+                <span className="text-xs">Memuat practice...</span>
+              </div>
+            </div>
+          </section>
+        ) : practiceError ? (
+          <section className="bg-white">
+            <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+              <div className="flex items-center gap-3 text-[#9b7b42]">
+                <AlertCircle size={18} />
+
+                <span className="text-xs">{practiceError}</span>
+              </div>
+            </div>
+          </section>
+        ) : practiceFocus.length > 0 ? (
           <section className="bg-white">
             <div className="mx-auto max-w-7xl px-6 py-10 lg:px-8 lg:py-12">
               {/* Header */}
+
               <div className="mb-7 max-w-2xl">
                 <div className="mb-2 flex items-center gap-3">
                   <span className="h-px w-8 bg-[#9b7b42]" />
+
                   <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#9b7b42]">
                     Areas of Practice
                   </span>
@@ -696,17 +811,17 @@ export default function Profile() {
                 </p>
               </div>
 
-              {/* Grid Card Dark */}
+              {/* Grid Card */}
+
               <div className="grid gap-px overflow-hidden border border-[#0b2f2a]/10 bg-[#0b2f2a]/10 md:grid-cols-2 lg:grid-cols-3">
                 {practiceFocus.map((item, index) => {
                   const Icon = item.icon;
 
                   return (
                     <article
-                      key={`${item.title}-${index}`}
+                      key={`${item.id}-${index}`}
                       className="group relative bg-[#0b2f2a] p-6 transition-all duration-500 hover:bg-[#0e3a34]"
                     >
-
                       <div className="relative flex items-start justify-between">
                         <div className="flex h-10 w-10 items-center justify-center border border-[#c9a96e]/40 bg-transparent text-[#c9a96e] transition-all duration-500 group-hover:border-[#c9a96e] group-hover:bg-[#c9a96e] group-hover:text-[#0b2f2a]">
                           <Icon size={17} strokeWidth={1.5} />
@@ -727,7 +842,6 @@ export default function Profile() {
                         </p>
                       )}
 
-                      {/* Garis aksen bawah */}
                       <div className="relative mt-5 h-px w-6 bg-[#c9a96e]/60 transition-all duration-500 group-hover:w-full group-hover:bg-[#c9a96e]" />
                     </article>
                   );
@@ -735,19 +849,19 @@ export default function Profile() {
               </div>
             </div>
           </section>
-        )}
+        ) : null}
 
-                {/* =================================================
+        {/* =================================================
             EXPERIENCE & CREDENTIALS
         ================================================= */}
 
         {hasCredentials && (
           <section className="bg-white">
             <div className="mx-auto max-w-5xl px-6 py-16 lg:px-8 lg:py-20">
-              {/* HEADER */}
               <div className="mb-12 border-b border-[#001311]/10 pb-8">
                 <div className="mb-3 flex items-center gap-3">
                   <span className="h-px w-8 bg-[#001311]" />
+
                   <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#001311]">
                     Professional Background
                   </span>
@@ -767,9 +881,9 @@ export default function Profile() {
                 </p>
               </div>
 
-              {/* BODY */}
               <div className="space-y-10">
                 {/* EDUCATION */}
+
                 {educationData.length > 0 && (
                   <div className="border border-[#001311]/15 bg-[#001311]">
                     <div className="flex items-center justify-between px-6 py-5">
@@ -782,15 +896,16 @@ export default function Profile() {
                           <p className="text-[9px] uppercase tracking-[0.25em] text-[#c9a96e]">
                             Education
                           </p>
+
                           <h3 className="text-sm font-medium tracking-tight text-white">
                             Educational Background
                           </h3>
                         </div>
                       </div>
 
-                      <span className="text-[10px] tracking-[0.2em] text-[#c9a96e]/70">
+                      {/* <span className="text-[10px] tracking-[0.2em] text-[#c9a96e]/70">
                         {String(educationData.length).padStart(2, "0")}
-                      </span>
+                      </span> */}
                     </div>
 
                     <div className="divide-y divide-white/10 border-t border-white/10">
@@ -807,6 +922,7 @@ export default function Profile() {
                             <h4 className="text-sm font-medium text-white transition-colors duration-300 group-hover:text-[#c9a96e]">
                               {item.degree}
                             </h4>
+
                             {item.institution && (
                               <p className="mt-1 text-xs text-white/45">
                                 {item.institution}
@@ -826,6 +942,7 @@ export default function Profile() {
                 )}
 
                 {/* PROFESSIONAL EXPERIENCE */}
+
                 {experienceData.length > 0 && (
                   <div className="border border-[#001311]/15 bg-[#001311]">
                     <div className="flex items-center justify-between px-6 py-5">
@@ -838,22 +955,23 @@ export default function Profile() {
                           <p className="text-[9px] uppercase tracking-[0.25em] text-[#c9a96e]">
                             Career
                           </p>
+
                           <h3 className="text-sm font-medium tracking-tight text-white">
                             Professional Experience
                           </h3>
                         </div>
                       </div>
 
-                      <span className="text-[10px] tracking-[0.2em] text-[#c9a96e]/70">
+                      {/* <span className="text-[10px] tracking-[0.2em] text-[#c9a96e]/70">
                         {String(experienceData.length).padStart(2, "0")}
-                      </span>
+                      </span> */}
                     </div>
 
                     <div className="divide-y divide-white/10 border-t border-white/10">
                       {experienceData.map((item, index) => (
                         <div
                           key={`experience-${index}`}
-                          className="group grid gap-4 px-6 py-5 transition-colors duration-300 hover:bg-white/3rid-cols-[40px_240px_1fr] lg:items-start"
+                          className="group grid gap-4 px-6 py-5 transition-colors duration-300 hover:bg-white/3 lg:grid-cols-[40px_240px_1fr] lg:items-start"
                         >
                           <div className="text-[10px] tracking-[0.15em] text-[#c9a96e]">
                             {String(index + 1).padStart(2, "0")}
@@ -863,11 +981,13 @@ export default function Profile() {
                             <h4 className="text-sm font-semibold text-white transition-colors duration-300 group-hover:text-[#c9a96e]">
                               {item.position}
                             </h4>
+
                             {item.company && (
                               <p className="mt-1 text-xs text-white/45">
                                 {item.company}
                               </p>
                             )}
+
                             {item.period && (
                               <p className="mt-1 text-[9px] uppercase tracking-[0.15em] text-[#c9a96e]">
                                 {item.period}
@@ -887,6 +1007,7 @@ export default function Profile() {
                 )}
 
                 {/* ADMISSION */}
+
                 {admissionData.length > 0 && (
                   <div className="border border-[#001311]/15 bg-[#001311]">
                     <div className="flex items-center justify-between px-6 py-5">
@@ -899,15 +1020,16 @@ export default function Profile() {
                           <p className="text-[9px] uppercase tracking-[0.25em] text-[#c9a96e]">
                             Admission
                           </p>
+
                           <h3 className="text-sm font-medium tracking-tight text-white">
                             Professional Admission
                           </h3>
                         </div>
                       </div>
 
-                      <span className="text-[10px] tracking-[0.2em] text-[#c9a96e]/70">
+                      {/* <span className="text-[10px] tracking-[0.2em] text-[#c9a96e]/70">
                         {String(admissionData.length).padStart(2, "0")}
-                      </span>
+                      </span> */}
                     </div>
 
                     <div className="divide-y divide-white/10 border-t border-white/10">
@@ -931,6 +1053,7 @@ export default function Profile() {
                               <h4 className="text-sm font-medium text-white transition-colors duration-300 group-hover:text-[#c9a96e]">
                                 {item.title}
                               </h4>
+
                               {item.description && (
                                 <p className="mt-1 text-xs leading-5 text-white/45">
                                   {item.description}
@@ -945,6 +1068,7 @@ export default function Profile() {
                 )}
 
                 {/* MEMBERSHIP */}
+
                 {membershipData.length > 0 && (
                   <div className="border border-[#001311]/15 bg-[#001311]">
                     <div className="flex items-center justify-between px-6 py-5">
@@ -957,15 +1081,16 @@ export default function Profile() {
                           <p className="text-[9px] uppercase tracking-[0.25em] text-[#c9a96e]">
                             Membership
                           </p>
+
                           <h3 className="text-sm font-medium tracking-tight text-white">
                             Professional Membership
                           </h3>
                         </div>
                       </div>
 
-                      <span className="text-[10px] tracking-[0.2em] text-[#c9a96e]/70">
+                      {/* <span className="text-[10px] tracking-[0.2em] text-[#c9a96e]/70">
                         {String(membershipData.length).padStart(2, "0")}
-                      </span>
+                      </span> */}
                     </div>
 
                     <div className="divide-y divide-white/10 border-t border-white/10">
@@ -989,6 +1114,7 @@ export default function Profile() {
                               <h4 className="text-sm font-medium text-white transition-colors duration-300 group-hover:text-[#c9a96e]">
                                 {item.title}
                               </h4>
+
                               {item.description && (
                                 <p className="mt-1 text-xs leading-5 text-white/45">
                                   {item.description}
@@ -1003,6 +1129,7 @@ export default function Profile() {
                 )}
 
                 {/* LANGUAGES */}
+
                 {languagesData.length > 0 && (
                   <div className="border border-[#001311]/15 bg-[#001311]">
                     <div className="flex items-center justify-between px-6 py-5">
@@ -1015,22 +1142,23 @@ export default function Profile() {
                           <p className="text-[9px] uppercase tracking-[0.25em] text-[#c9a96e]">
                             Languages
                           </p>
+
                           <h3 className="text-sm font-medium tracking-tight text-white">
                             Professional Communication
                           </h3>
                         </div>
                       </div>
 
-                      <span className="text-[10px] tracking-[0.2em] text-[#c9a96e]/70">
+                      {/* <span className="text-[10px] tracking-[0.2em] text-[#c9a96e]/70">
                         {String(languagesData.length).padStart(2, "0")}
-                      </span>
+                      </span> */}
                     </div>
 
                     <div className="flex flex-wrap gap-2 border-t border-white/10 px-6 py-5">
                       {languagesData.map((language, index) => (
                         <span
                           key={`language-${index}`}
-                          className="border border-white/15 px-4 py-2 text-xs text-white/70 transition-all duration-300 hover:border-[#c9a96e] hover:text-[#c9a96e]"
+                          className="border border-white/15 bg-[#d5aa71] px-4 py-2 text-xs text-[#001311] transition-all duration-300"
                         >
                           {language}
                         </span>
@@ -1113,7 +1241,6 @@ export default function Profile() {
           </section>
         )}
       </main>
-
       <Footer />
     </>
   );
