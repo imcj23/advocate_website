@@ -41,9 +41,9 @@ export default function Hero() {
 
             {/* Description */}
             <p className="mt-7 max-w-xl text-base leading-8 text-[#B8C0BB] sm:text-lg">
-              Pendampingan hukum yang profesional, terpercaya, dan berorientasi
-              pada kepentingan Anda. Kami hadir untuk memberikan perlindungan
-              hukum serta solusi yang tepat dalam menghadapi setiap persoalan.
+              Professional, trusted legal support focused on your best
+              interests. We are here to provide legal protection and the right
+              solutions for addressing any issue.
             </p>
 
             {/* Buttons */}

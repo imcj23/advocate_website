@@ -17,7 +17,7 @@ export default function CTA() {
           <span className="h-px w-8 bg-[#A27A44]" />
 
           <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#C9A96E]">
-            Konsultasi Hukum
+            Legal Consultation
           </span>
 
           <span className="h-px w-8 bg-[#A27A44]" />
@@ -28,16 +28,14 @@ export default function CTA() {
           {/* Left */}
           <div>
             <h2 className="max-w-4xl font-serif text-3xl font-medium leading-[1.08] tracking-tight md:text-4xl lg:text-5xl">
-              Ketika persoalan hukum
-              <span className="block text-[#C9A96E]">
-                membutuhkan kepastian.
-              </span>
+              When legal issues arise
+              <span className="block text-[#C9A96E]">need certainty.</span>
             </h2>
 
             <p className="mt-5 max-w-2xl text-sm leading-6 text-white/55 md:text-[15px]">
-              Setiap persoalan hukum membutuhkan pemahaman yang tepat dan
-              strategi yang terarah. Konsultasikan kebutuhan hukum Anda
-              bersama kami untuk menentukan langkah yang tepat.
+              Every legal issue requires a proper understanding and a focused
+              strategy. Consult with us about your legal needs to determine the
+              right course of action.
             </p>
           </div>
 
@@ -47,7 +45,7 @@ export default function CTA() {
               to="/contact"
               className="group inline-flex w-full items-center justify-between gap-5 border border-[#C9A96E]/60 bg-[#A27A44] px-5 py-4 text-xs font-semibold uppercase tracking-widest text-white transition-all duration-300 hover:border-[#C9A96E] hover:bg-[#C9A96E] lg:w-auto lg:min-w-57.5"
             >
-              <span>Konsultasi Sekarang</span>
+              <span>Consult Now</span>
 
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#001311] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
                 <ArrowUpRight size={17} strokeWidth={1.5} />
@@ -63,11 +61,7 @@ export default function CTA() {
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-3">
             <div className="flex h-8 w-8 items-center justify-center border border-[#A27A44]/40">
-              <Scale
-                size={16}
-                strokeWidth={1.4}
-                className="text-[#C9A96E]"
-              />
+              <Scale size={16} strokeWidth={1.4} className="text-[#C9A96E]" />
             </div>
 
             <span className="text-[10px] font-medium uppercase tracking-[0.15em] text-white/45">
@@ -76,7 +70,7 @@ export default function CTA() {
           </div>
 
           <p className="text-[11px] text-white/35">
-            Pendekatan hukum yang strategis dan berorientasi pada solusi.
+            A strategic and solution-oriented legal approach.
           </p>
         </div>
       </div>

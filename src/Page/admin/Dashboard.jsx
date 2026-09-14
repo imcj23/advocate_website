@@ -42,23 +42,27 @@ export default function Dashboard() {
       const headers = {
         Authorization: `Bearer ${token}`,
       };
-      const [practiceResponse, advocateResponse] = await Promise.all([
-        fetch("http://localhost:3500/practice", {
-          headers,
-        }),
+      const [practiceResponse, advocateResponse, articleResponse] =
+        await Promise.all([
+          fetch("http://localhost:3500/practice", {
+            headers,
+          }),
 
-        fetch("http://localhost:3500/advocate", {
-          headers,
-        }),
-      ]);
+          fetch("http://localhost:3500/advocate", {
+            headers,
+          }),
+          fetch("http://localhost:3500/article", { 
+            headers }),
+        ]);
 
       const practiceResult = await practiceResponse.json();
       const advocateResult = await advocateResponse.json();
+      const articleResult = await articleResponse.json();
 
       setStats({
         practice: practiceResult.data?.length || 0,
         advocate: advocateResult.data?.length || 0,
-        article: 0,
+        article: articleResult.data?.length || 0,
       });
     } catch (error) {
       console.error("Gagal mengambil data dashboard:", error);

@@ -1,5 +1,13 @@
 import { useEffect, useState } from "react";
-import { Plus, Pencil, Trash2, X, Save, BriefcaseBusiness } from "lucide-react";
+import {
+  Plus,
+  Pencil,
+  Trash2,
+  X,
+  Save,
+  BriefcaseBusiness,
+  Eye,
+} from "lucide-react";
 import Navbar from "../../Components/admin/Navbar";
 
 const API_URL = "http://localhost:3500/practice";
@@ -16,14 +24,12 @@ const emptyForm = {
 export default function Practice() {
   const [practices, setPractices] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const [modalOpen, setModalOpen] = useState(false);
   const [editingId, setEditingId] = useState(null);
-
   const [form, setForm] = useState(emptyForm);
-
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+  const [viewingPractice, setViewingPractice] = useState(null);
 
   const getToken = () => {
     return localStorage.getItem("token");
@@ -214,6 +220,9 @@ export default function Practice() {
       setError(error.message);
     }
   };
+  const handleView = (practice) => {
+    setViewingPractice(practice);
+  };
 
   return (
     <div className="min-h-screen bg-[#F3F6F3] text-[#001311]">
@@ -336,11 +345,16 @@ export default function Practice() {
 
                     <div className="flex shrink-0 items-center gap-2">
                       <button
+                        onClick={() => handleView(practice)}
+                        className="rounded-lg border border-[#D9DEDB] px-4 py-2 text-sm font-medium text-[#0B2F2A] transition hover:bg-[#F3F6F3]"
+                      >
+                        <Eye size={16} strokeWidth={1.5} />
+                      </button>
+                      <button
                         onClick={() => handleEdit(practice)}
                         className="flex items-center gap-2 border border-[#D9DEDB] px-4 py-2.5 text-xs transition hover:border-[#A27A44] hover:text-[#A27A44]"
                       >
                         <Pencil size={14} strokeWidth={1.5} />
-                        Edit
                       </button>
 
                       <button
@@ -348,7 +362,6 @@ export default function Practice() {
                         className="flex items-center gap-2 border border-[#D9DEDB] px-4 py-2.5 text-xs text-red-500 transition hover:border-red-300 hover:bg-red-50"
                       >
                         <Trash2 size={14} strokeWidth={1.5} />
-                        Hapus
                       </button>
                     </div>
                   </div>
@@ -359,15 +372,10 @@ export default function Practice() {
         </div>
       </main>
 
-      {/* ======================================
-          MODAL TAMBAH / EDIT
-      ======================================= */}
-
+      {/* MODAL TAMBAH / EDIT */}
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#001311]/60 px-4 py-6">
           <div className="flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden bg-white shadow-2xl">
-            {/* MODAL HEADER */}
-
             <div className="flex items-center justify-between border-b border-[#D9DEDB] px-6 py-5">
               <div>
                 <p className="text-[10px] uppercase tracking-[0.2em] text-[#A27A44]">
@@ -560,6 +568,127 @@ export default function Practice() {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+      {viewingPractice && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4"
+          onClick={() => setViewingPractice(null)}
+        >
+          <div
+            className="max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl bg-white shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* HEADER */}
+            <div className="flex items-center justify-between border-b border-[#D9DEDB] px-6 py-5">
+              <div>
+                <p className="mb-1 text-xs font-semibold uppercase tracking-[0.2em] text-[#A27A44]">
+                  Practice Area
+                </p>
+
+                <h2 className="text-2xl font-semibold text-[#0B2F2A]">
+                  {viewingPractice.nama}
+                </h2>
+              </div>
+
+              <button
+                onClick={() => setViewingPractice(null)}
+                className="flex h-9 w-9 items-center justify-center rounded-full text-xl text-gray-500 transition hover:bg-gray-100 hover:text-[#0B2F2A]"
+              >
+                ×
+              </button>
+            </div>
+
+            {/* CONTENT */}
+            <div className="space-y-8 px-6 py-6">
+              {/* DESKRIPSI */}
+              <section>
+                <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-[#A27A44]">
+                  Deskripsi
+                </h3>
+
+                <p className="leading-7 text-gray-600">
+                  {viewingPractice.deskripsi || "-"}
+                </p>
+              </section>
+
+              {/* YANG KAMI LAKUKAN */}
+              <section>
+                <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#A27A44]">
+                  Yang Kami Lakukan
+                </h3>
+
+                {Array.isArray(viewingPractice.yang_kami_lakukan) &&
+                viewingPractice.yang_kami_lakukan.length > 0 ? (
+                  <ul className="space-y-2">
+                    {viewingPractice.yang_kami_lakukan.map((item, index) => (
+                      <li key={index} className="flex gap-3 text-gray-600">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#A27A44]" />
+
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-gray-400">Belum ada data.</p>
+                )}
+              </section>
+
+              {/* PENDEKATAN KAMI */}
+              <section>
+                <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#A27A44]">
+                  Pendekatan Kami
+                </h3>
+
+                {Array.isArray(viewingPractice.pendekatan_kami) &&
+                viewingPractice.pendekatan_kami.length > 0 ? (
+                  <ul className="space-y-2">
+                    {viewingPractice.pendekatan_kami.map((item, index) => (
+                      <li key={index} className="flex gap-3 text-gray-600">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#A27A44]" />
+
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-gray-400">Belum ada data.</p>
+                )}
+              </section>
+
+              {/* MASALAH UMUM */}
+              <section>
+                <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#A27A44]">
+                  Masalah Umum
+                </h3>
+
+                {Array.isArray(viewingPractice.masalah_umum) &&
+                viewingPractice.masalah_umum.length > 0 ? (
+                  <ul className="space-y-2">
+                    {viewingPractice.masalah_umum.map((item, index) => (
+                      <li key={index} className="flex gap-3 text-gray-600">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#A27A44]" />
+
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-gray-400">Belum ada data.</p>
+                )}
+              </section>
+            </div>
+
+            {/* FOOTER */}
+            <div className="flex justify-end border-t border-[#D9DEDB] px-6 py-4">
+              <button
+                onClick={() => setViewingPractice(null)}
+                className="rounded-lg bg-[#0B2F2A] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#001311]"
+              >
+                Tutup
+              </button>
+            </div>
           </div>
         </div>
       )}

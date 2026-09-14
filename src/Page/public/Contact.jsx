@@ -74,21 +74,19 @@ Terima kasih.
             <div className="mb-7 flex items-center gap-3">
               <span className="h-px w-10 bg-[#A27A44]" />
               <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#C9A96E]">
-                Hubungi Kami
+                Contact Us
               </span>
             </div>
 
             <h1 className="text-[#F3F8F1] font-serif text-4xl font-medium leading-[1.08] tracking-tight md:text-5xl lg:text-6xl">
-              Mari membicarakan
-              <span className="block text-[#C9A96E]">
-                persoalan hukum Anda.
-              </span>
+              Let's talk about it
+              <span className="block text-[#C9A96E]">your legal issues.</span>
             </h1>
 
             <p className="mt-6 max-w-2xl text-sm leading-7 text-white md:text-base">
-              Setiap persoalan hukum membutuhkan pemahaman yang tepat. Sampaikan
-              kebutuhan hukum Anda kepada kami dan dapatkan pendampingan yang
-              profesional, strategis, dan berorientasi pada solusi.
+              Every legal issue requires a proper understanding. Tell us about
+              your legal needs and receive professional, strategic, and
+              solution-oriented assistance.
             </p>
 
             <div className="mt-10 flex items-center gap-4">
@@ -106,12 +104,12 @@ Terima kasih.
           <div>
             <div className="mb-8">
               <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#A27A44]">
-                Informasi Kantor
+                Office Information
               </span>
 
               <h2 className="mt-3 font-serif text-3xl font-medium leading-tight text-[#001311]">
-                Kami siap membantu
-                <span className="block">kebutuhan hukum Anda.</span>
+                We are ready to help
+                <span className="block">your legal needs.</span>
               </h2>
             </div>
 
@@ -128,13 +126,36 @@ Terima kasih.
 
                 <div>
                   <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#001311]/45">
-                    Alamat Kantor
+                    Office Addres
                   </p>
 
                   <p className="mt-2 text-sm leading-6 text-[#001311]/70">
-                    Jl. batam kota No. 00
+                    <span className="font-bold">Jakarta</span>
                     <br />
-                    Kota Batam, Provinsi Kepulauan Riau
+                    Jl.Letjen TB Simatupang Kav.20 Gedung ratu prabu 1 lt.1,
+                    cilandak, jakarta selatan 12560
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-4 border-t border-[#d9dedb] pt-5">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[#A27A44]/40">
+                  <MapPin
+                    size={17}
+                    strokeWidth={1.4}
+                    className="text-[#A27A44]"
+                  />
+                </div>
+
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#001311]/45">
+                    Office Addres
+                  </p>
+
+                  <p className="mt-2 text-sm leading-6 text-[#001311]/70">
+                    <span className="font-bold">Batam</span>
+                    <br />
+                    business center adhya building tower 3rd floor Jl. Jendral
+                    Sudirman, Bukit indah sukajadi, Kota Batam 2962
                   </p>
                 </div>
               </div>
@@ -176,7 +197,7 @@ Terima kasih.
                   </p>
 
                   <p className="mt-2 text-sm text-[#001311]/70">
-                    hukuman@gmail.com
+                    info@dsplawyer.com
                   </p>
                 </div>
               </div>
@@ -193,11 +214,11 @@ Terima kasih.
 
                 <div>
                   <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#001311]/45">
-                    Jam Operasional
+                    Operational Hours
                   </p>
 
                   <p className="mt-2 text-sm leading-6 text-[#001311]/70">
-                    Senin – Jumat
+                    Monday – Friday
                     <br />
                     09.00 – 17.00 WIB
                   </p>
@@ -208,17 +229,14 @@ Terima kasih.
             {/* Small Note */}
             <div className="mt-8 border-l-2 border-[#A27A44] bg-white px-5 py-4">
               <p className="text-xs leading-6 text-[#001311]/55">
-                Setiap informasi yang disampaikan dalam proses konsultasi
-                ditangani dengan menjaga profesionalitas dan kerahasiaan klien.
+                Any information conveyed in the consultation process is handled
+                with professionalism and client confidentiality.
               </p>
             </div>
           </div>
 
-          {/* =================================================
-              RIGHT - FORM
-          ================================================== */}
+          {/* Name */}
           <div className="border border-[#d9dedb] bg-white p-6 md:p-8 lg:p-10">
-            {/* Form Header */}
             <div className="mb-8">
               <div className="mb-4 flex items-center gap-3">
                 <div className="flex h-9 w-9 items-center justify-center bg-[#001311]">
@@ -230,27 +248,25 @@ Terima kasih.
                 </div>
 
                 <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#001311]/45">
-                  Form Konsultasi
+                  Konsultation Form
                 </span>
               </div>
 
               <h2 className="font-serif text-3xl font-medium text-[#001311]">
-                Sampaikan kebutuhan Anda
+                Convey your needs
               </h2>
 
               <p className="mt-3 text-sm leading-6 text-[#001311]/50">
-                Lengkapi informasi berikut agar kami dapat memahami kebutuhan
-                hukum Anda dengan lebih baik.
+                Please complete the following information so we can better understand your legal needs.
               </p>
             </div>
 
             {/* FORM */}
             <form onSubmit={handleSubmit} className="space-y-5">
-              {/* Name + Phone */}
               <div className="grid gap-5 md:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.15em] text-[#001311]/55">
-                    Nama Lengkap
+                    Full Name
                   </label>
 
                   <input
@@ -258,7 +274,7 @@ Terima kasih.
                     name="nama"
                     value={formData.nama}
                     onChange={handleChange}
-                    placeholder="Nama Anda"
+                    placeholder="..."
                     required
                     className="w-full border border-[#d9dedb] bg-[#F8FAF8] px-4 py-3 text-sm outline-none transition focus:border-[#A27A44]"
                   />
@@ -266,7 +282,7 @@ Terima kasih.
 
                 <div>
                   <label className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.15em] text-[#001311]/55">
-                    Nomor Telepon
+                    Phone Number
                   </label>
 
                   <input
@@ -274,7 +290,7 @@ Terima kasih.
                     name="telepon"
                     value={formData.telepon}
                     onChange={handleChange}
-                    placeholder="08xxxxxxxxxx"
+                    placeholder="....."
                     required
                     className="w-full border border-[#d9dedb] bg-[#F8FAF8] px-4 py-3 text-sm outline-none transition focus:border-[#A27A44]"
                   />
@@ -292,16 +308,14 @@ Terima kasih.
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="nama@email.com"
+                  placeholder="name@email.com"
                   required
                   className="w-full border border-[#d9dedb] bg-[#F8FAF8] px-4 py-3 text-sm outline-none transition focus:border-[#A27A44]"
                 />
               </div>
-
-              {/* Legal Matter */}
               <div>
                 <label className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.15em] text-[#001311]/55">
-                  Kebutuhan Hukum
+                  Legal Requirements
                 </label>
 
                 <select
@@ -312,40 +326,40 @@ Terima kasih.
                   className="w-full appearance-none border border-[#d9dedb] bg-[#F8FAF8] px-4 py-3 text-sm text-[#001311]/70 outline-none transition focus:border-[#A27A44]"
                 >
                   <option value="" disabled>
-                    Pilih kebutuhan hukum
+                    Select Legal Needs
                   </option>
 
-                  <option value="Bisnis & Korporasi">Bisnis & Korporasi</option>
+                  <option value="Business & Corporate">Business & Corporate</option>
 
-                  <option value="Kontrak & Komersial">
-                    Kontrak & Komersial
+                  <option value="Contract & Commercial">
+                    Contract & Commercial
                   </option>
 
-                  <option value="Penyelesaian Sengketa">
-                    Penyelesaian Sengketa
+                  <option value="Dispute Resolution">
+                    Dispute Resolution
                   </option>
 
-                  <option value="Ketenagakerjaan & Hubungan Industrial">
-                    Ketenagakerjaan & Hubungan Industrial
+                  <option value="Employment & Industrial Relations">
+                    Employment & Industrial Relations
                   </option>
 
-                  <option value="Konsultasi Hukum">Konsultasi Hukum</option>
-                  <option value="Merger & Akusisi">Merger & Akusisi</option>
-                  <option value="Perbankan & Keuanggan">
-                    Perbankan & Keuanggan
+                  <option value="Legal Opinion & Due Diligence">Legal Opinion & Due Diligence</option>
+                  <option value="Mergers & Acquisitions">Mergers & Acquisitions</option>
+                  <option value="Banking & Finance">
+                    Banking & Finance
                   </option>
-                  <option value="Perbankan & Keuanggan">
-                    Regulasi & Kepatuhan
+                  <option value="Regulatory & Compliance">
+                    Regulatory & Compliance
                   </option>
 
-                  <option value="Lainnya">Lainnya</option>
+                  <option value="Lainnya">Other</option>
                 </select>
               </div>
 
               {/* Message */}
               <div>
                 <label className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.15em] text-[#001311]/55">
-                  Pesan
+                  Message
                 </label>
 
                 <textarea
@@ -353,7 +367,7 @@ Terima kasih.
                   value={formData.pesan}
                   onChange={handleChange}
                   rows="5"
-                  placeholder="Jelaskan secara singkat kebutuhan atau persoalan hukum Anda..."
+                  placeholder="Briefly explain your legal needs or issues..."
                   required
                   className="w-full resize-none border border-[#d9dedb] bg-[#F8FAF8] px-4 py-3 text-sm outline-none transition focus:border-[#A27A44]"
                 />
@@ -364,7 +378,7 @@ Terima kasih.
                 type="submit"
                 className="group flex w-full items-center justify-between bg-[#001311] px-5 py-4 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:bg-[#A27A44]"
               >
-                <span>Kirim Permintaan Konsultasi</span>
+                <span>Submit Consultation Request</span>
 
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#A27A44] transition-all duration-300 group-hover:bg-[#001311] group-hover:translate-x-1 group-hover:-translate-y-1">
                   <ArrowUpRight size={17} strokeWidth={1.5} />

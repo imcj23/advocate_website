@@ -9,27 +9,27 @@ import {
 const steps = [
   {
     icon: MessageSquareText,
-    title: "Konsultasi",
+    title: "Consultation",
     description:
-      "Sampaikan permasalahan hukum dan kebutuhan Anda kepada tim kami.",
+      "Share your legal issues and needs with our team.",
   },
   {
     icon: Search,
-    title: "Analisis",
+    title: "Analysis",
     description:
-      "Kami mempelajari permasalahan dan kondisi hukum secara menyeluruh.",
+      "We study the legal issues and conditions thoroughly.",
   },
   {
     icon: Scale,
-    title: "Strategi",
+    title: "Strategy",
     description:
-      "Kami menyusun langkah dan strategi hukum yang sesuai dengan kebutuhan.",
+      "We develop legal steps and strategies that suit your needs.",
   },
   {
     icon: Handshake,
-    title: "Pendampingan",
+    title: "Mentoring",
     description:
-      "Kami memberikan pendampingan hukum secara profesional hingga proses selesai.",
+      "We provide professional legal assistance until the process is complete.",
   },
 ];
 
@@ -42,20 +42,19 @@ export default function ConsultationProcess() {
           <div className="mb-4 flex items-center justify-center gap-3">
             <span className="h-px w-9 bg-[#001311]" />
             <span className="text-xl font-bold uppercase tracking-[0.2em] text-[#001311]">
-              Proses Konsultasi
+              Consultation Proces
             </span>
             <span className="h-px w-9 bg-[#001311]" />
           </div>
 
           <h2 className="text-3xl font-semibold tracking-tight text-[#001311] md:text-4xl">
-            Pendampingan hukum
+            Legal assistance
             <span className="block text-[#A27A44]">
-              dimulai dari langkah yang tepat.
+              starting from the right steps.
             </span>
           </h2>
           <p className="mt-4 max-w-xl text-sm leading-6 text-[#001311]">
-            Kami memahami setiap permasalahan secara menyeluruh untuk memberikan
-            pendampingan hukum yang terarah dan profesional.
+            We understand each problem thoroughly to provide targeted and professional legal assistance.
           </p>
         </div>
 
@@ -79,8 +78,8 @@ export default function ConsultationProcess() {
                     <p className="mt-2 text-sm leading-6 text-[#001311]">
                       {step.description}
                     </p>
-                    
-                  </div>{step.number !== "04" && (
+                  </div>
+                  {step.number !== "04" && (
                     <ArrowRight
                       size={18}
                       strokeWidth={1.5}

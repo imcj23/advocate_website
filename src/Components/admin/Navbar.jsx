@@ -30,14 +30,14 @@ export default function Navbar({ user }) {
       icon: BriefcaseBusiness,
     },
     {
-      name: "Advocate",
-      path: "/admin/advocate",
-      icon: Users,
-    },
-    {
       name: "Article",
       path: "/admin/article",
       icon: FileText,
+    },
+    {
+      name: "Advocate",
+      path: "/admin/profile",
+      icon: Users,
     },
   ];
 

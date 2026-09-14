@@ -29,27 +29,26 @@ export default function About() {
                     <Scale size={25} />
                   </div>
                   <h3 className="mb-4 text-2xl font-semibold">
-                    Pendamping Hukum <br />
+                    Legal Advocate <br />
                     <span className="text-[#B8925A]">
-                      Profesional dan Terpercaya
+                      Professional and Trusted
                     </span>
                   </h3>
                 </div>
 
                 <p className="max-w-xl text-sm leading-7 text-white/75 md:text-base">
-                  "Office Name" adalah firma hukum butik yang dibangun
-                  berdasarkan prinsip sederhana: nasihat hukum harus memberikan
-                  kejelasan dan arah, bukan sekadar mengidentifikasi risiko.
+                  Law Office is a boutique law firm built on a simple principle:
+                  legal advice should provide clarity and direction, not simply
+                  identify risks.
                 </p>
 
                 <p className="mt-4 max-w-xl text-sm leading-7 text-white/75 md:text-base">
-                  Kami memberikan nasihat kepada pelaku bisnis, wirausahawan,
-                  eksekutif, dan klien perorangan mengenai berbagai masalah
-                  hukum yang kompleks, baik yang berkaitan dengan kegiatan
-                  usaha, korporasi, maupun sengketa. Layanan kami memadukan
-                  keahlian hukum dengan pemahaman praktis yang berorientasi pada
-                  aspek komersial serta berfokus pada pencapaian hasil yang
-                  bermakna bagi klien.
+                  We advise businesspeople, entrepreneurs, executives, and
+                  individual clients on a wide range of complex legal issues,
+                  including business, corporate, and disputes. Our services
+                  combine legal expertise with practical, commercially-oriented
+                  understanding, focused on achieving meaningful client
+                  outcomes.
                 </p>
               </div>
 
@@ -61,7 +60,7 @@ export default function About() {
                   }}
                   className="inline-flex items-center gap-2 rounded-md bg-[#A27A44] px-5 py-3 text-sm font-semibold text-white transition duration-300"
                 >
-                  Selengkapnya
+                  Read More
                   <ArrowRight size={17} />
                 </button>
               </div>
@@ -75,11 +74,10 @@ export default function About() {
                 </div>
                 <div>
                   <h3 className="mb-1.5 text-lg font-semibold text-[#102A25]">
-                    Profesional
+                    Professional
                   </h3>
                   <p className="text-sm leading-6 text-gray-600">
-                    Layanan hukum diberikan berdasarkan keahlian, pengalaman,
-                    serta analisis yang profesional.
+                   Legal services are provided based on expertise, experience and professional analysis.
                   </p>
                 </div>
               </div>
@@ -89,11 +87,10 @@ export default function About() {
                 </div>
                 <div>
                   <h3 className="mb-1.5 text-lg font-semibold text-[#102A25]">
-                    Terpercaya
+                    Trusted
                   </h3>
                   <p className="text-sm leading-6 text-gray-600">
-                    Menjaga kepercayaan, kerahasiaan, serta kepentingan klien
-                    dalam setiap proses hukum.
+                    Maintaining client trust, confidentiality and interests in every legal process.
                   </p>
                 </div>
               </div>
@@ -103,11 +100,10 @@ export default function About() {
                 </div>
                 <div>
                   <h3 className="mb-1.5 text-lg font-semibold text-[#102A25]">
-                    Berorientasi pada Klien
+                    Client Oriented
                   </h3>
                   <p className="text-sm leading-6 text-gray-600">
-                    Memahami kebutuhan klien dan memberikan solusi hukum yang
-                    sesuai dengan kondisi setiap perkara.
+                    Understand client needs and provide legal solutions that suit the conditions of each case.
                   </p>
                 </div>
               </div>

@@ -15,6 +15,9 @@ import Contact from "./Page/public/Contact";
 import Login from "./Page/admin/Login";
 import Dashboard from "./Page/admin/Dashboard";
 import PracticeAdmin from "./Page/admin/Practice";
+// import Advocate from "./Page/admin/Advocate";
+import ProfileAdmin from './Page/admin/ProfileAdmin'
+import Article from './Page/admin/Article'
 
 // Protected Route
 function ProtectedRoute({ children }) {
@@ -54,13 +57,13 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-        {/*
+        
         <Route
-          path="/admin/advocate"
+          path="/admin/profile"
           element={
             <ProtectedRoute>
-              <Advocate />
-            </ProtectedRoute>
+              <ProfileAdmin />
+            </ProtectedRoute> 
           }
         />
 
@@ -72,7 +75,6 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-        */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>

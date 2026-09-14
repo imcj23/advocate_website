@@ -29,9 +29,8 @@ export default function Footer() {
             </div>
 
             <p className="mt-7 max-w-md text-sm leading-7 text-white/55">
-              Memberikan pendampingan dan solusi hukum yang profesional,
-              strategis, dan berintegritas untuk membantu klien menghadapi
-              berbagai kebutuhan hukum.
+              Providing professional, strategic, and integrity-based legal
+              assistance and solutions to help clients face various legal needs.
             </p>
 
             <button
@@ -41,7 +40,7 @@ export default function Footer() {
               }}
               className="inline-flex mt-2 items-center gap-2 rounded-md bg-[#A27A44] px-5 py-3 text-sm font-semibold text-white transition duration-300 "
             >
-              Konsultasi Hukum
+              Legal Consultation
               <ArrowUpRight
                 size={17}
                 className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
@@ -52,7 +51,7 @@ export default function Footer() {
           {/* Navigation */}
           <div>
             <p className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-white/40">
-              Navigasi
+              Navigation
             </p>
 
             <nav className="flex flex-col items-start gap-3">
@@ -60,28 +59,28 @@ export default function Footer() {
                 onClick={() => navigate("/")}
                 className="text-sm text-white/65 transition hover:text-white"
               >
-                Beranda
+                Home Page
               </button>
 
               <button
                 onClick={() => navigate("/about")}
                 className="text-sm text-white/65 transition hover:text-white"
               >
-                Tentang Kami
+                About Us
               </button>
 
               <button
                 onClick={() => navigate("/practice")}
                 className="text-sm text-white/65 transition hover:text-white"
               >
-                Layanan Hukum
+                Service
               </button>
 
               <button
                 onClick={() => navigate("/contact")}
                 className="text-sm text-white/65 transition hover:text-white"
               >
-                Kontak
+                Contact
               </button>
             </nav>
           </div>
@@ -89,7 +88,7 @@ export default function Footer() {
           {/* Contact */}
           <div>
             <p className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-white/40">
-              Hubungi Kami
+              Contact Us
             </p>
 
             <div className="space-y-4">
@@ -101,9 +100,20 @@ export default function Footer() {
                 />
 
                 <p className="text-sm leading-6 text-white/65">
-                  Jl. Batam No. 123
-                  <br />
-                  Batam, Indonesia
+                  Batam business center adhya building tower 3rd floor Jl.
+                  Jendral Sudirman, Bukit indah sukajadi, Kota Batam 2962
+                </p>
+              </div>
+              <div className="flex gap-3">
+                <MapPin
+                  size={17}
+                  strokeWidth={1.6}
+                  className="mt-0.5 shrink-0 text-white/45"
+                />
+
+                <p className="text-sm leading-6 text-white/65">
+                  Jakarta Jl.Letjen TB Simatupang Kav.20 Gedung ratu prabu 1
+                  lt.1, cilandak, jakarta selatan 12560
                 </p>
               </div>
 
@@ -114,7 +124,7 @@ export default function Footer() {
                   className="shrink-0 text-white/45"
                 />
 
-                <p className="text-sm text-white/65">+62 812 3456 7890</p>
+                <p className="text-sm text-white/65">+62 81391578817</p>
               </div>
 
               <div className="flex items-center gap-3">
