@@ -3,7 +3,9 @@ import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 
 import {
-  ArrowUpRight,
+  // ArrowUpRight,
+  ChevronRight,
+  Quote,
   BriefcaseBusiness,
   GraduationCap,
   Scale,
@@ -15,7 +17,7 @@ import {
   AlertCircle,
   Building2,
   Users,
-  CheckCircle2,
+  // CheckCircle2,
   Landmark,
   ShieldCheck,
   FileText,
@@ -157,7 +159,6 @@ const getPracticeIcon = (iconName, index) => {
     }
   }
 
-  // fallback jika icon dari backend kosong
   const fallbackIcons = [
     BriefcaseBusiness,
     SquareText,
@@ -179,10 +180,6 @@ const getPracticeIcon = (iconName, index) => {
 export default function Profile() {
   const [profile, setProfile] = useState(null);
 
-  // ===================================================
-  // PRACTICE STATE
-  // ===================================================
-
   const [practices, setPractices] = useState([]);
 
   const [loading, setLoading] = useState(true);
@@ -191,10 +188,6 @@ export default function Profile() {
   const [errorMessage, setErrorMessage] = useState("");
   const [practiceError, setPracticeError] = useState("");
 
-  // ===================================================
-  // GET PROFILE
-  // ===================================================
-
   useEffect(() => {
     // eslint-disable-next-line react-hooks/immutability
     fetchProfile();
@@ -202,23 +195,13 @@ export default function Profile() {
     fetchPractices();
   }, []);
 
-  // ===================================================
-  // GET ADVOCATE PROFILE
-  // ===================================================
-
   const fetchProfile = async () => {
     try {
       setLoading(true);
       setErrorMessage("");
 
       const response = await fetch(`${API_URL}/advocate`);
-
       const result = await response.json();
-
-      console.log("=================================");
-      console.log("PUBLIC PROFILE RESPONSE");
-      console.log(result);
-      console.log("=================================");
 
       if (response.status === 404) {
         setErrorMessage("Profil advocate belum tersedia.");
@@ -237,54 +220,31 @@ export default function Profile() {
         throw new Error("Data advocate tidak ditemukan dari backend.");
       }
 
-      console.log("EDUCATION:", advocate.education);
-      console.log("EXPERIENCE:", advocate.experience);
-      console.log("ADMISSION:", advocate.admission);
-      console.log("MEMBERSHIP:", advocate.membership);
-      console.log("LANGUAGES:", advocate.languages);
-      console.log("SELECTED EXPERIENCE:", advocate.selected_experience);
-
       setProfile({
         id: advocate.id || "",
-
         nama: advocate.nama || "",
         posisi: advocate.posisi || "",
-
         email_1: advocate.email_1 || "",
         email_office: advocate.email_office || "",
         no_hp: advocate.no_hp || "",
-
         foto: advocate.foto || "",
-
         tagline: advocate.tagline || "",
         bio: advocate.bio || "",
-
         education: normalizeArray(advocate.education),
-
         experience: normalizeArray(advocate.experience),
-
         admission: normalizeArray(advocate.admission),
-
         membership: normalizeArray(advocate.membership),
-
         languages: normalizeArray(advocate.languages),
-
         selected_experience: normalizeArray(advocate.selected_experience),
-
         status: advocate.status || "active",
       });
     } catch (error) {
       console.error("GET PUBLIC PROFILE ERROR:", error);
-
       setErrorMessage(error.message || "Gagal mengambil data profil advocate.");
     } finally {
       setLoading(false);
     }
   };
-
-  // ===================================================
-  // GET PRACTICE
-  // ===================================================
 
   const fetchPractices = async () => {
     try {
@@ -292,47 +252,17 @@ export default function Profile() {
       setPracticeError("");
 
       const response = await fetch(`${API_URL}/practice`);
-
       const result = await response.json();
-
-      console.log("=================================");
-      console.log("PUBLIC PRACTICE RESPONSE");
-      console.log(result);
-      console.log("=================================");
 
       if (!response.ok) {
         throw new Error(result.message || "Gagal mengambil data practice.");
       }
-
-      /*
-        Bisa menerima beberapa bentuk response backend:
-
-        1.
-        {
-          data: [...]
-        }
-
-        2.
-        {
-          practices: [...]
-        }
-
-        3.
-        [...]
-      */
 
       const practiceData = result?.data || result?.practices || result || [];
 
       if (!Array.isArray(practiceData)) {
         throw new Error("Format data practice dari backend tidak valid.");
       }
-
-      /*
-        HANYA mengambil:
-        - nama
-        - deskripsi
-        - icon
-      */
 
       const formattedPractices = practiceData
         .map((item, index) => {
@@ -342,31 +272,21 @@ export default function Profile() {
 
           return {
             id: item.id || index,
-
             nama: item.nama || item.name || "",
-
             deskripsi: item.deskripsi || item.description || "",
-
             icon: item.icon || "",
           };
         })
         .filter((item) => item.nama || item.deskripsi);
 
-      console.log("PRACTICE YANG DIGUNAKAN:", formattedPractices);
-
       setPractices(formattedPractices);
     } catch (error) {
       console.error("GET PRACTICE ERROR:", error);
-
       setPracticeError(error.message || "Gagal mengambil data practice.");
     } finally {
       setLoadingPractice(false);
     }
   };
-
-  // ===================================================
-  // PRACTICE FOCUS
-  // ===================================================
 
   const practiceFocus = useMemo(() => {
     return practices.map((item, index) => {
@@ -381,21 +301,13 @@ export default function Profile() {
     });
   }, [practices]);
 
-  // ===================================================
-  // EDUCATION
-  // ===================================================
-
   const educationData = useMemo(() => {
     if (!profile) return [];
 
     return profile.education
       .map((item) => {
         if (typeof item === "string") {
-          return {
-            degree: item,
-            institution: "",
-            year: "",
-          };
+          return { degree: item, institution: "", year: "" };
         }
 
         return {
@@ -408,7 +320,6 @@ export default function Profile() {
               "program",
               "pendidikan",
             ]) || "Pendidikan",
-
           institution: getField(item, [
             "institution",
             "universitas",
@@ -417,16 +328,11 @@ export default function Profile() {
             "kampus",
             "institusi",
           ]),
-
           year: getField(item, ["year", "tahun", "period"]),
         };
       })
       .filter((item) => item.degree || item.institution || item.year);
   }, [profile]);
-
-  // ===================================================
-  // PROFESSIONAL EXPERIENCE
-  // ===================================================
 
   const experienceData = useMemo(() => {
     if (!profile) return [];
@@ -434,12 +340,7 @@ export default function Profile() {
     return profile.experience
       .map((item) => {
         if (typeof item === "string") {
-          return {
-            position: item,
-            company: "",
-            period: "",
-            description: "",
-          };
+          return { position: item, company: "", period: "", description: "" };
         }
 
         return {
@@ -452,7 +353,6 @@ export default function Profile() {
               "jabatan",
               "role",
             ]) || "Professional Experience",
-
           company: getField(item, [
             "company",
             "perusahaan",
@@ -461,7 +361,6 @@ export default function Profile() {
             "organisasi",
             "institution",
           ]),
-
           period: getField(item, [
             "period",
             "periode",
@@ -469,7 +368,6 @@ export default function Profile() {
             "tahun",
             "date",
           ]),
-
           description: getField(item, [
             "description",
             "deskripsi",
@@ -485,20 +383,13 @@ export default function Profile() {
       );
   }, [profile]);
 
-  // ===================================================
-  // ADMISSION
-  // ===================================================
-
   const admissionData = useMemo(() => {
     if (!profile) return [];
 
     return profile.admission
       .map((item) => {
         if (typeof item === "string") {
-          return {
-            title: item,
-            description: "",
-          };
+          return { title: item, description: "" };
         }
 
         return {
@@ -511,7 +402,6 @@ export default function Profile() {
               "organization",
               "organisasi",
             ]) || "Admission",
-
           description: getField(item, [
             "description",
             "deskripsi",
@@ -526,20 +416,13 @@ export default function Profile() {
       .filter((item) => item.title || item.description);
   }, [profile]);
 
-  // ===================================================
-  // MEMBERSHIP
-  // ===================================================
-
   const membershipData = useMemo(() => {
     if (!profile) return [];
 
     return profile.membership
       .map((item) => {
         if (typeof item === "string") {
-          return {
-            title: item,
-            description: "",
-          };
+          return { title: item, description: "" };
         }
 
         return {
@@ -552,7 +435,6 @@ export default function Profile() {
               "organization",
               "organisasi",
             ]) || "Membership",
-
           description: getField(item, [
             "description",
             "deskripsi",
@@ -566,10 +448,6 @@ export default function Profile() {
       })
       .filter((item) => item.title || item.description);
   }, [profile]);
-
-  // ===================================================
-  // LANGUAGES
-  // ===================================================
 
   const languagesData = useMemo(() => {
     if (!profile) return [];
@@ -585,27 +463,19 @@ export default function Profile() {
       .filter(Boolean);
   }, [profile]);
 
-  // ===================================================
-  // SELECTED EXPERIENCE
-  // ===================================================
-
   const selectedExperienceData = useMemo(() => {
     if (!profile) return [];
 
     return profile.selected_experience
       .map((item) => {
         if (typeof item === "string") {
-          return {
-            title: item,
-            description: "",
-          };
+          return { title: item, description: "" };
         }
 
         return {
           title:
             getField(item, ["title", "name", "nama", "judul"]) ||
             "Selected Experience",
-
           description: getField(item, [
             "description",
             "deskripsi",
@@ -617,10 +487,6 @@ export default function Profile() {
       })
       .filter((item) => item.title || item.description);
   }, [profile]);
-
-  // ===================================================
-  // CHECK EXPERIENCE & CREDENTIALS
-  // ===================================================
 
   const hasCredentials =
     educationData.length > 0 ||
@@ -637,17 +503,14 @@ export default function Profile() {
     return (
       <>
         <Navbar />
-
-        <main className="flex min-h-[70vh] items-center justify-center bg-[#f5f6f3]">
+        <main className="flex min-h-[70vh] items-center justify-center bg-[#F5F2EC]">
           <div className="flex flex-col items-center text-center">
-            <Loader2 size={30} className="animate-spin text-[#0b2f2a]" />
-
+            <Loader2 size={30} className="animate-spin text-[#001311]" />
             <p className="mt-4 text-sm text-[#68716d]">
               Memuat profil advocate...
             </p>
           </div>
         </main>
-
         <Footer />
       </>
     );
@@ -661,23 +524,19 @@ export default function Profile() {
     return (
       <>
         <Navbar />
-
-        <main className="flex min-h-[70vh] items-center justify-center bg-[#f5f6f3] px-6">
+        <main className="flex min-h-[70vh] items-center justify-center bg-[#F5F2EC] px-6">
           <div className="max-w-md text-center">
             <div className="mx-auto flex h-12 w-12 items-center justify-center border border-[#d9dedb] bg-white text-[#9b7b42]">
               <AlertCircle size={22} strokeWidth={1.5} />
             </div>
-
-            <h1 className="mt-5 text-2xl font-medium text-[#0b2f2a]">
+            <h1 className="mt-5 text-2xl font-medium text-[#001311]">
               Profil Tidak Tersedia
             </h1>
-
             <p className="mt-3 text-sm leading-6 text-[#68716d]">
               {errorMessage || "Data profil advocate belum tersedia."}
             </p>
           </div>
         </main>
-
         <Footer />
       </>
     );
@@ -687,483 +546,275 @@ export default function Profile() {
     <>
       <Navbar />
 
-      <main className="bg-[#f5f6f3] text-[#0b2f2a]">
+      <main className="bg-[#F5F2EC] text-[#001311]">
         {/* =================================================
-            PROFILE HERO
+            HERO
         ================================================= */}
 
-        <section className="bg-[#001311] text-[#f5f6f3]">
-          <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8 lg:py-14">
-            <div className="grid gap-8 lg:grid-cols-[250px_1fr] lg:items-center">
-              {/* PHOTO */}
+        <section className="relative overflow-hidden bg-[#001311]">
+          <div className="mx-auto grid max-w-7xl lg:grid-cols-2">
+            {/* TEXT */}
+            <div className="flex flex-col justify-center px-6 py-16 lg:px-8 lg:py-24">
+              <div className="mb-10 flex items-center gap-2 text-[11px] uppercase tracking-[0.15em] text-white/45 lg:mb-16">
+                <span>Home</span>
+                <ChevronRight size={12} />
+                <span>About DSP</span>
+                <ChevronRight size={12} />
+                <span className="text-[#c9a96e]">Founder Profile</span>
+              </div>
 
-              <div className="relative w-full max-w-62.5">
-                <div className="absolute -bottom-2 -left-2 h-full w-full border border-[#c9a96e]/50" />
-
-                <div className="relative aspect-4/4.5 overflow-hidden bg-[#dfe3df]">
-                  {profile.foto ? (
-                    <img
-                      src={getImageUrl(profile.foto)}
-                      alt={profile.nama || "Profile"}
-                      className="h-full w-full object-cover"
-                    />
-                  ) : (
-                    <div className="flex h-full w-full items-center justify-center text-[#0b2f2a]/30">
-                      <UserGroup size={70} strokeWidth={1} />
-                    </div>
-                  )}
+              {profile.posisi && (
+                <div className="mb-4 flex items-center gap-3">
+                  <span className="h-px w-8 bg-[#c9a96e]" />
+                  <p className="text-[11px] uppercase tracking-[0.25em] text-[#c9a96e]">
+                    {profile.posisi}
+                  </p>
                 </div>
-              </div>
+              )}
 
-              {/* INFORMATION */}
+              <h1 className="text-4xl font-semibold uppercase leading-tight tracking-tight text-white sm:text-5xl">
+                {profile.nama || "Nama Lengkap"}
+              </h1>
 
-              <div className="lg:pl-5">
-                {profile.posisi && (
-                  <div className="mb-4 flex items-center gap-3">
-                    <span className="h-px w-8 bg-[#c9a96e]" />
+              {profile.tagline && (
+                <p className="mt-4 text-lg font-light italic text-[#c9a96e]">
+                  {profile.tagline}
+                </p>
+              )}
 
-                    <p className="text-[11px] uppercase tracking-[0.25em] text-[#c9a96e]">
-                      {profile.posisi}
-                    </p>
-                  </div>
-                )}
+              {(profile.email_1 || profile.email_office || profile.no_hp) && (
+                <div className="mt-8 flex flex-wrap gap-x-7 gap-y-2 text-xs uppercase tracking-widest text-white/40">
+                  {profile.email_1 && <span>{profile.email_1}</span>}
+                  {profile.email_office &&
+                    profile.email_office !== profile.email_1 && (
+                      <span>{profile.email_office}</span>
+                    )}
+                  {profile.no_hp && <span>{profile.no_hp}</span>}
+                </div>
+              )}
+            </div>
 
-                <h1 className="text-4xl font-medium tracking-tight sm:text-5xl lg:text-6xl">
-                  {profile.nama || "Nama Lengkap"}
-                </h1>
-
-                {profile.tagline && (
-                  <p className="mt-3 text-lg font-light text-[#c9a96e]">
-                    {profile.tagline}
-                  </p>
-                )}
-
-                <div className="my-5 h-px bg-white/15" />
-
-                {profile.bio && (
-                  <p className="max-w-3xl text-base leading-7 text-white/65 sm:text-lg">
-                    {profile.bio}
-                  </p>
-                )}
-
-                {(profile.email_1 || profile.email_office || profile.no_hp) && (
-                  <div className="mt-6 flex flex-wrap gap-x-7 gap-y-2 text-xs uppercase tracking-widest text-white/45">
-                    {profile.email_1 && <span>{profile.email_1}</span>}
-
-                    {profile.email_office &&
-                      profile.email_office !== profile.email_1 && (
-                        <span>{profile.email_office}</span>
-                      )}
-
-                    {profile.no_hp && <span>{profile.no_hp}</span>}
-                  </div>
-                )}
-              </div>
+            {/* PHOTO */}
+            <div className="relative min-h-75 lg:min-h-full">
+              {profile.foto ? (
+                <img
+                  src={getImageUrl(profile.foto)}
+                  alt={profile.nama || "Profile"}
+                  className="h-full w-full object-cover object-top"
+                />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center bg-[#0e3a34] text-white/20">
+                  <UserGroup size={80} strokeWidth={1} />
+                </div>
+              )}
+              <div className="absolute inset-y-0 left-0 w-24 bg-linear-to-r from-[#001311] to-transparent lg:block" />
             </div>
           </div>
         </section>
 
         {/* =================================================
-            PRACTICE FOCUS
+            PROFESSIONAL PROFILE + PRACTICE FOCUS
         ================================================= */}
 
-        {loadingPractice ? (
-          <section className="bg-white">
-            <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-              <div className="flex items-center gap-3 text-[#68716d]">
-                <Loader2 size={18} className="animate-spin" />
+        <section className="bg-[#F3F8F1]">
+          <div className="mx-auto grid max-w-7xl gap-14 border-t border-[#001311]/10 px-6 py-16 lg:grid-cols-2 lg:gap-20 lg:px-8 lg:py-20">
+            {/* Professional Profile */}
+            <div>
+              <h2 className="text-xl font-semibold uppercase tracking-[0.15em] text-[#001311]">
+                Professional Profile
+              </h2>
+              <div className="mt-4 h-px w-10 bg-[#c9a96e]" />
 
-                <span className="text-xs">Memuat practice...</span>
+              <div className="mt-6 space-y-5 text-sm leading-7 text-[#001311]/70">
+                {profile.bio ? (
+                  profile.bio
+                    .split("\n")
+                    .filter(Boolean)
+                    .map((para, i) => <p key={i}>{para}</p>)
+                ) : (
+                  <p>Bio belum tersedia.</p>
+                )}
               </div>
             </div>
-          </section>
-        ) : practiceError ? (
-          <section className="bg-white">
-            <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-              <div className="flex items-center gap-3 text-[#9b7b42]">
-                <AlertCircle size={18} />
 
-                <span className="text-xs">{practiceError}</span>
-              </div>
-            </div>
-          </section>
-        ) : practiceFocus.length > 0 ? (
-          <section className="bg-white">
-            <div className="mx-auto max-w-7xl px-6 py-10 lg:px-8 lg:py-12">
-              {/* Header */}
+            {/* Practice Focus */}
+            <div>
+              <h2 className="text-xl font-semibold uppercase tracking-[0.15em] text-[#001311]">
+                Practice Focus
+              </h2>
+              <div className="mt-4 h-px w-10 bg-[#c9a96e]" />
 
-              <div className="mb-7 max-w-2xl">
-                <div className="mb-2 flex items-center gap-3">
-                  <span className="h-px w-8 bg-[#9b7b42]" />
-
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#9b7b42]">
-                    Areas of Practice
-                  </span>
+              {loadingPractice ? (
+                <div className="mt-6 flex items-center gap-3 text-[#001311]/40">
+                  <Loader2 size={16} className="animate-spin" />
+                  <span className="text-xs">Memuat practice...</span>
                 </div>
-
-                <h2 className="text-3xl font-medium tracking-tight text-[#0b2f2a] md:text-4xl">
-                  Practice <span className="font-light">Focus</span>
-                </h2>
-
-                <p className="mt-3 max-w-xl text-xs leading-6 text-[#68716d]">
-                  Bidang praktik hukum yang menjadi fokus profesional advocate
-                  berdasarkan pengalaman dan kompetensi.
-                </p>
-              </div>
-
-              {/* Grid Card */}
-
-              <div className="grid gap-px overflow-hidden border border-[#0b2f2a]/10 bg-[#0b2f2a]/10 md:grid-cols-2 lg:grid-cols-3">
-                {practiceFocus.map((item, index) => {
-                  const Icon = item.icon;
-
-                  return (
-                    <article
-                      key={`${item.id}-${index}`}
-                      className="group relative bg-[#0b2f2a] p-6 transition-all duration-500 hover:bg-[#0e3a34]"
-                    >
-                      <div className="relative flex items-start justify-between">
-                        <div className="flex h-10 w-10 items-center justify-center border border-[#c9a96e]/40 bg-transparent text-[#c9a96e] transition-all duration-500 group-hover:border-[#c9a96e] group-hover:bg-[#c9a96e] group-hover:text-[#0b2f2a]">
+              ) : practiceError ? (
+                <div className="mt-6 flex items-center gap-3 text-[#A27A44]">
+                  <AlertCircle size={16} />
+                  <span className="text-xs">{practiceError}</span>
+                </div>
+              ) : practiceFocus.length > 0 ? (
+                <div className="mt-6 divide-y divide-[#001311]/10">
+                  {practiceFocus.slice(0, 5).map((item, index) => {
+                    const Icon = item.icon;
+                    return (
+                      <div
+                        key={`${item.id}-${index}`}
+                        className="flex items-start gap-4 py-4 first:pt-0"
+                      >
+                        <div className="flex h-9 w-9 shrink-0 items-center justify-center border border-[#c9a96e]/40 text-[#9b7b42]">
                           <Icon size={17} strokeWidth={1.5} />
                         </div>
-
-                        <span className="text-[10px] font-medium tracking-[0.2em] text-[#c9a96e]/70">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
+                        <div>
+                          <p className="text-sm font-medium text-[#001311]">
+                            {item.title}
+                          </p>
+                          {item.description && (
+                            <p className="mt-1 text-xs leading-5 text-[#001311]/55">
+                              {item.description}
+                            </p>
+                          )}
+                        </div>
                       </div>
-
-                      <h3 className="relative mt-5 text-base font-semibold tracking-tight text-white transition-colors duration-300 group-hover:text-[#c9a96e]">
-                        {item.title}
-                      </h3>
-
-                      {item.description && (
-                        <p className="relative mt-2 text-xs leading-5 text-white/50 transition-colors duration-300 group-hover:text-white/70">
-                          {item.description}
-                        </p>
-                      )}
-
-                      <div className="relative mt-5 h-px w-6 bg-[#c9a96e]/60 transition-all duration-500 group-hover:w-full group-hover:bg-[#c9a96e]" />
-                    </article>
-                  );
-                })}
-              </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <p className="mt-6 text-xs text-[#001311]/40">
+                  Belum ada data practice yang tersedia.
+                </p>
+              )}
             </div>
-          </section>
-        ) : null}
+          </div>
+        </section>
 
         {/* =================================================
             EXPERIENCE & CREDENTIALS
         ================================================= */}
 
         {hasCredentials && (
-          <section className="bg-white">
-            <div className="mx-auto max-w-5xl px-6 py-16 lg:px-8 lg:py-20">
-              <div className="mb-12 border-b border-[#001311]/10 pb-8">
-                <div className="mb-3 flex items-center gap-3">
-                  <span className="h-px w-8 bg-[#001311]" />
+          <section className="bg-[#F5F2EC]">
+            <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
+              <h2 className="text-center text-lg font-semibold uppercase tracking-[0.2em] text-[#001311]">
+                Experience &amp; Credentials
+              </h2>
+              <div className="mx-auto mt-4 h-px w-14 bg-[#A27A44]" />
 
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#001311]">
-                    Professional Background
-                  </span>
-                </div>
-
-                <h2 className="text-3xl font-medium tracking-tight text-[#001311] sm:text-4xl">
-                  Experience{" "}
-                  <span className="font-light italic text-[#A27A44]">
-                    &amp; Credentials
-                  </span>
-                </h2>
-
-                <p className="mt-4 max-w-2xl text-xs leading-6 text-[#001311]/60">
-                  Pendidikan, pengalaman profesional, admission, keanggotaan,
-                  dan kemampuan bahasa yang mendukung praktik profesional
-                  advocate.
-                </p>
-              </div>
-
-              <div className="space-y-10">
-                {/* EDUCATION */}
-
+              <div className="mt-12 grid gap-10 sm:grid-cols-3 lg:grid-cols-5">
+                {/* Education */}
                 {educationData.length > 0 && (
-                  <div className="border border-[#001311]/15 bg-[#001311]">
-                    <div className="flex items-center justify-between px-6 py-5">
-                      <div className="flex items-center gap-3">
-                        <div className="flex h-9 w-9 items-center justify-center border border-[#c9a96e]/50 text-[#c9a96e]">
-                          <GraduationCap size={16} strokeWidth={1.5} />
-                        </div>
-
-                        <div>
-                          <p className="text-[9px] uppercase tracking-[0.25em] text-[#c9a96e]">
-                            Education
-                          </p>
-
-                          <h3 className="text-sm font-medium tracking-tight text-white">
-                            Educational Background
-                          </h3>
-                        </div>
-                      </div>
-
-                      {/* <span className="text-[10px] tracking-[0.2em] text-[#c9a96e]/70">
-                        {String(educationData.length).padStart(2, "0")}
-                      </span> */}
-                    </div>
-
-                    <div className="divide-y divide-white/10 border-t border-white/10">
+                  <div className="flex flex-col items-center text-center">
+                    <GraduationCap
+                      size={26}
+                      strokeWidth={1.4}
+                      className="text-[#A27A44]"
+                    />
+                    <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.15em] text-[#001311]">
+                      Education
+                    </p>
+                    <div className="mt-2 space-y-1">
                       {educationData.map((item, index) => (
-                        <div
-                          key={`education-${index}`}
-                          className="group grid gap-3 px-6 py-4 transition-colors duration-300 hover:bg-white/3 md:grid-cols-[40px_1fr_auto] md:items-center"
+                        <p
+                          key={`edu-${index}`}
+                          className="text-xs leading-5 text-[#001311]/60"
                         >
-                          <span className="text-[10px] tracking-[0.15em] text-[#c9a96e]">
-                            {String(index + 1).padStart(2, "0")}
-                          </span>
-
-                          <div>
-                            <h4 className="text-sm font-medium text-white transition-colors duration-300 group-hover:text-[#c9a96e]">
-                              {item.degree}
-                            </h4>
-
-                            {item.institution && (
-                              <p className="mt-1 text-xs text-white/45">
-                                {item.institution}
-                              </p>
-                            )}
-                          </div>
-
-                          {item.year && (
-                            <span className="text-[10px] uppercase tracking-[0.15em] text-[#c9a96e]">
-                              {item.year}
-                            </span>
+                          {item.degree}
+                          {item.institution && (
+                            <>
+                              <br />
+                              {item.institution}
+                            </>
                           )}
-                        </div>
+                        </p>
                       ))}
                     </div>
                   </div>
                 )}
 
-                {/* PROFESSIONAL EXPERIENCE */}
-
+                {/* Professional Experience */}
                 {experienceData.length > 0 && (
-                  <div className="border border-[#001311]/15 bg-[#001311]">
-                    <div className="flex items-center justify-between px-6 py-5">
-                      <div className="flex items-center gap-3">
-                        <div className="flex h-9 w-9 items-center justify-center border border-[#c9a96e]/50 text-[#c9a96e]">
-                          <BriefcaseBusiness size={16} strokeWidth={1.5} />
-                        </div>
-
-                        <div>
-                          <p className="text-[9px] uppercase tracking-[0.25em] text-[#c9a96e]">
-                            Career
-                          </p>
-
-                          <h3 className="text-sm font-medium tracking-tight text-white">
-                            Professional Experience
-                          </h3>
-                        </div>
-                      </div>
-
-                      {/* <span className="text-[10px] tracking-[0.2em] text-[#c9a96e]/70">
-                        {String(experienceData.length).padStart(2, "0")}
-                      </span> */}
-                    </div>
-
-                    <div className="divide-y divide-white/10 border-t border-white/10">
-                      {experienceData.map((item, index) => (
-                        <div
-                          key={`experience-${index}`}
-                          className="group grid gap-4 px-6 py-5 transition-colors duration-300 hover:bg-white/3 lg:grid-cols-[40px_240px_1fr] lg:items-start"
-                        >
-                          <div className="text-[10px] tracking-[0.15em] text-[#c9a96e]">
-                            {String(index + 1).padStart(2, "0")}
-                          </div>
-
-                          <div>
-                            <h4 className="text-sm font-semibold text-white transition-colors duration-300 group-hover:text-[#c9a96e]">
-                              {item.position}
-                            </h4>
-
-                            {item.company && (
-                              <p className="mt-1 text-xs text-white/45">
-                                {item.company}
-                              </p>
-                            )}
-
-                            {item.period && (
-                              <p className="mt-1 text-[9px] uppercase tracking-[0.15em] text-[#c9a96e]">
-                                {item.period}
-                              </p>
-                            )}
-                          </div>
-
-                          {item.description && (
-                            <p className="max-w-2xl text-xs leading-6 text-white/50">
-                              {item.description}
-                            </p>
-                          )}
-                        </div>
-                      ))}
-                    </div>
+                  <div className="flex flex-col items-center text-center">
+                    <BriefcaseBusiness
+                      size={26}
+                      strokeWidth={1.4}
+                      className="text-[#A27A44]"
+                    />
+                    <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.15em] text-[#001311]">
+                      Professional Experience
+                    </p>
+                    <p className="mt-2 text-xs leading-5 text-[#001311]/60">
+                      {experienceData[0].position}
+                      {experienceData[0].company &&
+                        ` — ${experienceData[0].company}`}
+                      {experienceData.length > 1 &&
+                        ` (+${experienceData.length - 1} lainnya)`}
+                    </p>
                   </div>
                 )}
 
-                {/* ADMISSION */}
-
+                {/* Admissions */}
                 {admissionData.length > 0 && (
-                  <div className="border border-[#001311]/15 bg-[#001311]">
-                    <div className="flex items-center justify-between px-6 py-5">
-                      <div className="flex items-center gap-3">
-                        <div className="flex h-9 w-9 items-center justify-center border border-[#c9a96e]/50 text-[#c9a96e]">
-                          <Scale size={16} strokeWidth={1.5} />
-                        </div>
-
-                        <div>
-                          <p className="text-[9px] uppercase tracking-[0.25em] text-[#c9a96e]">
-                            Admission
-                          </p>
-
-                          <h3 className="text-sm font-medium tracking-tight text-white">
-                            Professional Admission
-                          </h3>
-                        </div>
-                      </div>
-
-                      {/* <span className="text-[10px] tracking-[0.2em] text-[#c9a96e]/70">
-                        {String(admissionData.length).padStart(2, "0")}
-                      </span> */}
-                    </div>
-
-                    <div className="divide-y divide-white/10 border-t border-white/10">
+                  <div className="flex flex-col items-center text-center">
+                    <Scale
+                      size={26}
+                      strokeWidth={1.4}
+                      className="text-[#A27A44]"
+                    />
+                    <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.15em] text-[#001311]">
+                      Admissions
+                    </p>
+                    <div className="mt-2 space-y-1">
                       {admissionData.map((item, index) => (
-                        <div
-                          key={`admission-${index}`}
-                          className="group grid gap-3 px-6 py-4 transition-colors duration-300 hover:bg-white/3 md:grid-cols-[40px_1fr]"
+                        <p
+                          key={`adm-${index}`}
+                          className="text-xs leading-5 text-[#001311]/60"
                         >
-                          <span className="text-[10px] tracking-[0.15em] text-[#c9a96e]">
-                            {String(index + 1).padStart(2, "0")}
-                          </span>
-
-                          <div className="flex items-start gap-3">
-                            <CheckCircle2
-                              size={15}
-                              strokeWidth={1.5}
-                              className="mt-0.5 shrink-0 text-[#c9a96e]"
-                            />
-
-                            <div>
-                              <h4 className="text-sm font-medium text-white transition-colors duration-300 group-hover:text-[#c9a96e]">
-                                {item.title}
-                              </h4>
-
-                              {item.description && (
-                                <p className="mt-1 text-xs leading-5 text-white/45">
-                                  {item.description}
-                                </p>
-                              )}
-                            </div>
-                          </div>
-                        </div>
+                          {item.title}
+                        </p>
                       ))}
                     </div>
                   </div>
                 )}
 
-                {/* MEMBERSHIP */}
-
+                {/* Memberships */}
                 {membershipData.length > 0 && (
-                  <div className="border border-[#001311]/15 bg-[#001311]">
-                    <div className="flex items-center justify-between px-6 py-5">
-                      <div className="flex items-center gap-3">
-                        <div className="flex h-9 w-9 items-center justify-center border border-[#c9a96e]/50 text-[#c9a96e]">
-                          <Users size={16} strokeWidth={1.5} />
-                        </div>
-
-                        <div>
-                          <p className="text-[9px] uppercase tracking-[0.25em] text-[#c9a96e]">
-                            Membership
-                          </p>
-
-                          <h3 className="text-sm font-medium tracking-tight text-white">
-                            Professional Membership
-                          </h3>
-                        </div>
-                      </div>
-
-                      {/* <span className="text-[10px] tracking-[0.2em] text-[#c9a96e]/70">
-                        {String(membershipData.length).padStart(2, "0")}
-                      </span> */}
-                    </div>
-
-                    <div className="divide-y divide-white/10 border-t border-white/10">
+                  <div className="flex flex-col items-center text-center">
+                    <Users
+                      size={26}
+                      strokeWidth={1.4}
+                      className="text-[#A27A44]"
+                    />
+                    <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.15em] text-[#001311]">
+                      Memberships
+                    </p>
+                    <div className="mt-2 space-y-1">
                       {membershipData.map((item, index) => (
-                        <div
-                          key={`membership-${index}`}
-                          className="group grid gap-3 px-6 py-4 transition-colors duration-300 hover:bg-white/3 md:grid-cols-[40px_1fr]"
+                        <p
+                          key={`mem-${index}`}
+                          className="text-xs leading-5 text-[#001311]/60"
                         >
-                          <span className="text-[10px] tracking-[0.15em] text-[#c9a96e]">
-                            {String(index + 1).padStart(2, "0")}
-                          </span>
-
-                          <div className="flex items-start gap-3">
-                            <CheckCircle2
-                              size={15}
-                              strokeWidth={1.5}
-                              className="mt-0.5 shrink-0 text-[#c9a96e]"
-                            />
-
-                            <div>
-                              <h4 className="text-sm font-medium text-white transition-colors duration-300 group-hover:text-[#c9a96e]">
-                                {item.title}
-                              </h4>
-
-                              {item.description && (
-                                <p className="mt-1 text-xs leading-5 text-white/45">
-                                  {item.description}
-                                </p>
-                              )}
-                            </div>
-                          </div>
-                        </div>
+                          {item.title}
+                        </p>
                       ))}
                     </div>
                   </div>
                 )}
 
-                {/* LANGUAGES */}
-
+                {/* Languages */}
                 {languagesData.length > 0 && (
-                  <div className="border border-[#001311]/15 bg-[#001311]">
-                    <div className="flex items-center justify-between px-6 py-5">
-                      <div className="flex items-center gap-3">
-                        <div className="flex h-9 w-9 items-center justify-center border border-[#c9a96e]/50 text-[#c9a96e]">
-                          <Languages size={16} strokeWidth={1.5} />
-                        </div>
-
-                        <div>
-                          <p className="text-[9px] uppercase tracking-[0.25em] text-[#c9a96e]">
-                            Languages
-                          </p>
-
-                          <h3 className="text-sm font-medium tracking-tight text-white">
-                            Professional Communication
-                          </h3>
-                        </div>
-                      </div>
-
-                      {/* <span className="text-[10px] tracking-[0.2em] text-[#c9a96e]/70">
-                        {String(languagesData.length).padStart(2, "0")}
-                      </span> */}
-                    </div>
-
-                    <div className="flex flex-wrap gap-2 border-t border-white/10 px-6 py-5">
-                      {languagesData.map((language, index) => (
-                        <span
-                          key={`language-${index}`}
-                          className="border border-white/15 bg-[#d5aa71] px-4 py-2 text-xs text-[#001311] transition-all duration-300"
-                        >
-                          {language}
-                        </span>
-                      ))}
-                    </div>
+                  <div className="flex flex-col items-center text-center">
+                    <Languages
+                      size={26}
+                      strokeWidth={1.4}
+                      className="text-[#A27A44]"
+                    />
+                    <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.15em] text-[#001311]">
+                      Languages
+                    </p>
+                    <p className="mt-2 text-xs leading-5 text-[#001311]/60">
+                      {languagesData.join(", ")}
+                    </p>
                   </div>
                 )}
               </div>
@@ -1172,75 +823,75 @@ export default function Profile() {
         )}
 
         {/* =================================================
-            SELECTED EXPERIENCE
+            QUOTE + SELECTED EXPERIENCE
         ================================================= */}
 
-        {selectedExperienceData.length > 0 && (
-          <section className="bg-white">
-            <div className="mx-auto max-w-7xl px-6 py-10 lg:px-8 lg:py-12">
-              <div className="mb-7 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-                <div>
-                  <div className="mb-2 flex items-center gap-3">
-                    <span className="h-px w-7 bg-[#9b7b42]" />
+        {(profile.tagline || selectedExperienceData.length > 0) && (
+          <section className="grid lg:grid-cols-2 mb-10">
+            {/* Quote */}
+            <div className="relative flex flex-col justify-center overflow-hidden bg-[#001311] px-10 py-20 sm:px-16">
+              <div className="absolute inset-0">
+                {profile.foto && (
+                  <img
+                    src={getImageUrl(profile.foto)}
+                    alt=""
+                    className="h-full w-full object-cover opacity-25"
+                  />
+                )}
+                <div className="absolute inset-0 bg-[#001311]/80" />
+              </div>
 
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#9b7b42]">
-                      Track Record
-                    </span>
-                  </div>
+              <div className="relative">
+                <Quote size={40} strokeWidth={1} className="text-[#c9a96e]" />
 
-                  <h2 className="text-3xl font-medium tracking-tight text-[#0b2f2a] sm:text-4xl">
-                    Selected <span className="font-light">Experience</span>
-                  </h2>
-                </div>
+                <p className="mt-6 max-w-md text-2xl font-light leading-snug text-white">
+                  {profile.tagline || "Doby & Situmorang Partners"}
+                </p>
 
-                <p className="max-w-sm text-xs leading-5 text-[#68716d] sm:text-right">
-                  Pengalaman terpilih yang mencerminkan bidang pekerjaan dan
-                  pendekatan profesional advocate.
+                <p className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-[#c9a96e]">
+                  — {profile.nama}
                 </p>
               </div>
+            </div>
 
-              <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-                {selectedExperienceData.map((item, index) => (
-                  <article
-                    key={`selected-${index}`}
-                    className={`group border border-[#d9dedb] p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0b2f2a] hover:shadow-sm ${
-                      index === 0 ? "md:col-span-2 lg:col-span-2" : ""
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] text-[#9b7b42]">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
+            {/* Selected Experience */}
+            <div className="flex flex-col justify-center bg-[#F5F2EC] px-10 py-20 sm:px-16">
+              <h2 className="text-xl font-semibold uppercase tracking-[0.15em] text-[#001311]">
+                Selected Experience
+              </h2>
+              <div className="mt-4 h-px w-10 bg-[#A27A44]" />
 
-                      <ArrowUpRight
-                        size={16}
-                        strokeWidth={1.4}
-                        className="text-[#9b7b42] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                      />
-                    </div>
-
-                    <p className="mt-5 text-[9px] uppercase tracking-[0.18em] text-[#9b7b42]">
-                      Selected Experience
-                    </p>
-
-                    <h3 className="mt-1.5 text-base font-medium text-[#0b2f2a]">
-                      {item.title}
-                    </h3>
-
-                    {item.description && (
-                      <p className="mt-2 text-xs leading-5 text-[#66736f]">
-                        {item.description}
-                      </p>
-                    )}
-
-                    <div className="mt-5 h-px w-6 bg-[#9b7b42] transition-all duration-500 group-hover:w-full" />
-                  </article>
-                ))}
-              </div>
+              {selectedExperienceData.length > 0 ? (
+                <ul className="mt-6 space-y-4">
+                  {selectedExperienceData.map((item, index) => (
+                    <li
+                      key={`selected-${index}`}
+                      className="flex items-start gap-3"
+                    >
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#A27A44]" />
+                      <div>
+                        <span className="text-sm font-medium leading-6 text-[#001311]">
+                          {item.title}
+                        </span>
+                        {item.description && (
+                          <p className="mt-1 text-xs leading-5 text-[#001311]/55">
+                            {item.description}
+                          </p>
+                        )}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="mt-6 text-sm text-[#001311]/50">
+                  Belum ada data selected experience.
+                </p>
+              )}
             </div>
           </section>
         )}
       </main>
+
       <Footer />
     </>
   );

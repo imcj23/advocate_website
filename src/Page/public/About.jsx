@@ -2,17 +2,19 @@ import { useEffect, useState } from "react";
 import {
   ArrowRight,
   Scale,
-  Target,
+  // Target,
   ShieldCheck,
   UserGroup,
   Handshake,
   MessagesSquare,
   Crosshair,
+  ChessKnight,
 } from "lucide-react";
 
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 import Law3 from "../../assets/law3.jpg";
+import Logo from "../../assets/logo.png";
 
 const API_URL = "http://localhost:3500";
 
@@ -79,7 +81,7 @@ export default function About() {
     },
     {
       title: "Strategy",
-      icon: Target,
+      icon: ChessKnight,
       description:
         "We develop strategies based on legal analysis and client objectives. Every action is considered objectively, measurably, and results-oriented.",
     },
@@ -178,7 +180,7 @@ export default function About() {
       <div className="border-y border-[#dedfd9] bg-[#F3F8F1]">
         <div className="mx-auto mt-5 max-w-4xl items-center text-center">
           <p className="text-2xl font-bold uppercase tracking-[0.25em] text-[#001311]">
-            Who We Are
+            About DSP
           </p>
 
           <div className="flex items-center justify-center">
@@ -189,41 +191,28 @@ export default function About() {
         </div>
 
         <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-[0.8fr_1.2fr] lg:px-8 lg:py-10">
-          <div className="flex flex-col justify-between">
-            <div>
-              <h2 className="mt-5 max-w-md text-3xl font-semibold leading-tight tracking-tight text-[#001311] sm:text-4xl lg:text-5xl">
-                Law is not just about rules.
-              </h2>
-
-              <div className="mt-8 h-px w-16 bg-[#A27A44]" />
-
-              <p className="mt-6 max-w-sm text-base leading-7 text-[#687470]">
-                Law is about understanding the issues, seeing the risks, and
-                determining the right steps to protect each client's interests.
-              </p>
-            </div>
+          <div className="flex flex-col justify-between items-center">
+            <img src={Logo} alt="" />
 
             <div className="mt-10 hidden lg:block">
               <p className="text-sm font-medium uppercase tracking-[0.2em] text-[#344642]">
-                Profesional · Terpercaya · Berintegritas
+                Integrity · Strategy · Resolution
               </p>
             </div>
           </div>
 
           <div className="max-w-3xl">
             <p className="text-lg leading-8 text-[#344642]">
-              In every legal matter, there are interests, risks, and future
-              prospects that must be considered holistically. Therefore, we view
-              the work of an advocate as more than just providing a legal
-              opinion, but also as a deep understanding of the issue and
-              developing the appropriate steps to achieve it.
-            </p>
-
-            <p className="mt-6 leading-8 text-[#687470]">
-              We provide legal assistance with a professional, objective, and
-              strategic approach. Each case is handled based on careful
-              analysis, transparent communication, and a strategy tailored to
-              each client's individual needs and goals.
+              DSP Law Office is a boutique legal practice built around a simple
+              principle: legal advice should create clarity and direction, not
+              merely identify risks. <br />
+              <br /> We advise businesses, entrepreneurs, executives and private
+              clients on complex legal matters across business, corporate and
+              dispute-related matters. <br />
+              <br /> Our work combines legal expertise with a practical
+              understanding of our clients' commercial objectives, allowing us
+              to develop solutions that are legally sound, commercially aware
+              and focused on achieving meaningful outcomes.
             </p>
           </div>
         </div>
@@ -278,49 +267,25 @@ export default function About() {
       ====================================================== */}
       <div className="text-[#001311]">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
-          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-            <div className="lg:pr-10">
-              <div className="flex items-center gap-3">
-                <span className="h-px w-15 bg-[#c5ad76]" />
+          <div className="flex flex-col items-center text-center">
+            <div className="flex items-center gap-3">
+              <span className="h-px w-15 bg-[#c5ad76]" />
 
-                <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#001311]">
-                  What Makes Us Different
-                </p>
-
-                <span className="h-px w-15 bg-[#c5ad76]" />
-              </div>
-
-              <h2 className="mt-6 max-w-md text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
-                A sharper approach.
-                <br />
-                <span className="text-[#A27A44]">More personal support.</span>
-              </h2>
-
-              <p className="mt-6 max-w-md text-sm leading-7 text-[#001311] lg:text-base">
-                Every legal issue requires a different approach. We combine
-                precision, strategy, and an understanding of our clients' needs
-                in every step of our support.
+              <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#001311]">
+                What Makes Us Different
               </p>
+
+              <span className="h-px w-15 bg-[#c5ad76]" />
             </div>
 
-            <div className="grid sm:grid-cols-2">
-              {differentItems.map((item, index) => {
+            <div className="mt-12 grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {differentItems.map((item) => {
                 const Icon = item.icon;
 
                 return (
                   <div
                     key={item.title}
-                    className={`flex flex-col items-center py-8 ${
-                      index === 0 ? "border-t border-[#45615c]" : ""
-                    } ${
-                      index === 1
-                        ? "border-t border-[#45615c] sm:border-l sm:pl-10"
-                        : ""
-                    } ${index === 2 ? "border-t border-[#45615c]" : ""} ${
-                      index === 3
-                        ? "border-t border-[#45615c] sm:border-l sm:pl-10"
-                        : ""
-                    }`}
+                    className="flex flex-col items-center rounded-2xl border border-[#45615c]/30 px-6 py-8"
                   >
                     <Icon
                       size={34}
@@ -332,7 +297,7 @@ export default function About() {
                       {item.title}
                     </h3>
 
-                    <p className="mt-3 max-w-sm text-center text-sm leading-7 text-[#001311]">
+                    <p className="mt-3 text-center text-sm leading-7 text-[#001311]">
                       {item.description}
                     </p>
                   </div>
@@ -342,95 +307,78 @@ export default function About() {
           </div>
         </div>
       </div>
-
-      <div className="bg-[#001311]">
-        <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 py-20 lg:grid-cols-[0.85fr_1.15fr] lg:px-8 lg:py-28">
-          {/* FOTO */}
-          <div className="relative">
-            <div className="absolute -bottom-4 -right-4 h-full w-full border border-[#b59b62]" />
-
-            <div className="relative aspect-4/5 overflow-hidden bg-[#e9ebe7]">
-              {loadingProfile ? (
-                <div className="flex h-full items-center justify-center">
-                  <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#8a7548] border-t-transparent" />
-                </div>
-              ) : profile?.foto ? (
-                <img
-                  src={getImageUrl(profile.foto)}
-                  alt={profile.nama || "Founder"}
-                  className="h-full w-full object-cover"
-                />
-              ) : (
-                <div className="flex h-full items-center justify-center text-sm text-[#687470]">
-                  Foto belum tersedia
-                </div>
-              )}
-            </div>
+      <div className="bg-[#0b2f2a]">
+        <div className="mx-auto grid max-w-7xl lg:grid-cols-2">
+          <div className="relative aspect-4/5 overflow-hidden bg-[#0c0c0c] lg:aspect-auto">
+            {loadingProfile ? (
+              <div className="flex h-full items-center justify-center">
+                <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#8a7548] border-t-transparent" />
+              </div>
+            ) : profile?.foto ? (
+              <img
+                src={getImageUrl(profile.foto)}
+                alt={profile.nama || "Founder"}
+                className="h-full w-full object-cover "
+              />
+            ) : (
+              <div className="flex h-full items-center justify-center text-sm text-[#F3F8F1]">
+                Foto belum tersedia
+              </div>
+            )}
           </div>
 
-          {/* PROFILE */}
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#8a7548]">
+          <div className="flex flex-col justify-center px-8 py-16 sm:px-14 lg:px-16 lg:py-0">
+            <p className="text-medium font-bold uppercase tracking-[0.2em] text-[#A27A44]">
               {loadingProfile
                 ? "Loading..."
                 : profile?.posisi || "Founder & Managing Partner"}
             </p>
 
-            <h2 className="mt-4 text-3xl font-semibold text-[#F3F8F1] sm:text-4xl lg:text-5xl">
+            <div className="mt-4 h-px w-10 bg-[#A27A44]" />
+
+            <h2 className="mt-5 font-serif text-3xl leading-tight text-[#F3F8F1] sm:text-4xl">
               {loadingProfile
                 ? "Loading..."
                 : profile?.nama || "Nama belum tersedia"}
             </h2>
 
-            <div className="my-8 h-px w-16 bg-[#b59b62]" />
-
-            {/* TAGLINE / KUTIPAN */}
             {loadingProfile ? (
-              <div className="h-20 animate-pulse rounded bg-white/5" />
+              <div className="mt-8 h-32 animate-pulse rounded bg-black/5" />
             ) : (
-              <>
+              <div className="mt-7 space-y-5 text-[15px] leading-7 text-[#F3F8F1]">
                 {profile?.tagline && (
-                  <p className="text-lg leading-8 text-[#F3F8F1]">
-                    “{profile.tagline}”
+                  <p className="font-semibold text-[#F3F8F1]">
+                    {profile.tagline}
                   </p>
                 )}
-
-                {/* BIO / DESKRIPSI */}
-                {profile?.bio && (
-                  <p
-                    className={`leading-8 text-[#F3F8F1] ${
-                      profile?.tagline ? "mt-5" : "text-lg"
-                    }`}
-                  >
-                    {profile.bio}
-                  </p>
-                )}
-
-                {!profile?.tagline && !profile?.bio && (
-                  <p className="leading-8 text-[#F3F8F1]/70">
-                    The advocate's profile does not yet have a description.
-                  </p>
-                )}
-              </>
+                {profile?.bio
+                  ? profile.bio
+                      .split("\n")
+                      .filter(Boolean)
+                      .map((para, i) => <p key={i}>{para}</p>)
+                  : !profile?.tagline && (
+                      <p className="text-[#001311]/50">
+                        The advocate's profile does not yet have a description.
+                      </p>
+                    )}
+              </div>
             )}
 
-            {/* BUTTON */}
-            <div className="mt-8 flex flex-wrap gap-3">
-              <button
-                onClick={() => (window.location.href = "/profile")}
-                className="flex items-center gap-3 border px-4 py-2 text-sm font-bold text-[#F3F8F1] transition-colors hover:border-transparent hover:bg-[#A27A44] hover:text-[#F3F8F1]"
-              >
-                Profile
-                <ArrowRight />
-              </button>
-            </div>
+            <button
+              onClick={() => (window.location.href = "/profile")}
+              className="group mt-9 flex w-fit items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-[#A27A44] mb-5"
+            >
+              View Profile
+              <ArrowRight
+                size={15}
+                className="transition-transform group-hover:translate-x-1"
+              />
+            </button>
           </div>
         </div>
       </div>
 
-      {/* =====================================================
-          OUR OFFICES
-      ====================================================== */}
+      {/* office */}
       <section className="border-y border-[#dedfd9] bg-[#f7f7f4]">
         <div className="mx-auto max-w-7xl px-6 py-14 lg:px-8 lg:py-16">
           <div className="mb-10 flex items-center gap-4">
@@ -550,7 +498,7 @@ export default function About() {
                       Email
                     </p>
                     <p className="mt-1 text-sm font-medium text-[#263a36]">
-                       info@dsplawyer.com
+                      info@dsplawyer.com
                     </p>
                   </div>
 
