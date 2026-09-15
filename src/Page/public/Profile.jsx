@@ -607,7 +607,14 @@ export default function Profile() {
                   <UserGroup size={80} strokeWidth={1} />
                 </div>
               )}
-              <div className="absolute inset-y-0 left-0 w-24 bg-linear-to-r from-[#001311] to-transparent lg:block" />
+              {/* gradient kiri */}
+              <div className="absolute inset-y-0 left-0 w-24 bg-linear-to-r from-[#001311] to-transparent" />
+              {/* gradient kanan */}
+              <div className="absolute inset-y-0 right-0 w-24 bg-linear-to-l from-[#001311] to-transparent" />
+              {/* gradient atas */}
+              {/* <div className="absolute inset-x-0 top-0 h-24 bg-linear-to-b from-[#001311] to-transparent" /> */}
+              {/* gradient bawah */}
+              <div className="absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-[#001311] to-transparent" />
             </div>
           </div>
         </section>
@@ -688,10 +695,6 @@ export default function Profile() {
             </div>
           </div>
         </section>
-
-        {/* =================================================
-            EXPERIENCE & CREDENTIALS
-        ================================================= */}
 
         {hasCredentials && (
           <section className="bg-[#F5F2EC]">
