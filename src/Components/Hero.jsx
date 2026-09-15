@@ -1,130 +1,98 @@
 import { useNavigate } from "react-router";
 import { ArrowRight, Scale, ShieldCheck } from "lucide-react";
 import Lawpict from "../assets/law2.jpg";
-// import { scrollToSection } from "../utils/scrollTo";
 
 export default function Hero() {
   const navigate = useNavigate();
-  return (
-    <section
-      id="hero"
-      className="relative min-h-screen overflow-hidden bg-[#071512] text-[#F4F1E8]"
-    >
-      {/* <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-40 top-20 h-96 w-96 rounded-full bg-[#A27A44]/10 blur-[120px]" />
-        <div className="absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-[#A27A44]/10 blur-[120px]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-size-[70px_70px]" />
-      </div> */}
 
-      <div className="relative mx-auto flex min-h-screen max-w-7xl items-center px-6 py-20 sm:px-8 lg:px-10">
-        <div className="grid w-full items-center gap-14 lg:grid-cols-2 lg:gap-20">
-          <div className="order-2 lg:order-1">
-            <div className="mb-7 inline-flex items-center gap-3 border-l-2 border-[#B8925A] pl-4">
-              <Scale className="h-5 w-5 text-[#B8925A]" />
-              <span className="text-sm font-medium uppercase tracking-[0.25em] text-[#CBB994]">
+  return (
+    <section className="relative overflow-hidden bg-[#001311]">
+      <div className="absolute inset-y-0 right-0 w-full lg:w-[65%]">
+        <img
+          src={Lawpict}
+          alt="Our Firm"
+          className="h-full w-full object-cover"
+          // loading="eager"
+        />
+        <div className="absolute inset-0 bg-linear-to-r from-[#001311] via-[#001311]/25 to-transparent" />
+          <div className="absolute inset-0 bg-black/10" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6 py-14 sm:px-8 lg:px-8 lg:py-30">
+        <div className="max-w-2xl">
+          <div className="mb-5 flex items-center gap-3">
+            <span className="h-px w-9 bg-[#8a7548]" />
+            <div className="flex items-center gap-2">
+              <Scale className="h-4 w-4 text-[#8a7548]" />
+              <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#F3F8F1]">
                 Legal Protection & Justice
               </span>
             </div>
-
-            <h1 className="max-w-3xl font-serif text-5xl font-semibold leading-[1.08] tracking-tight text-[#F4F1E8] sm:text-6xl lg:text-7xl">
-              The Justice and
-              <span className="block text-[#B8925A]">Legal Protection</span>
-              You Deserve.
-            </h1>
-
-            {/* Gold divider */}
-            <div className="mt-8 flex items-center gap-3">
-              <div className="h-px w-16 bg-[#B8925A]" />
-              <div className="h-1.5 w-1.5 rotate-45 bg-[#B8925A]" />
-              <div className="h-px w-8 bg-[#B8925A]/50" />
+          </div>
+          <h1 className="font-lora text-4xl font-semibold leading-[1.05] tracking-tight text-[#F3F8F1] sm:text-5xl lg:text-[4.5rem]">
+            Committed to <span className="text-[#8a7548]">Solve.</span>
+            <br />
+            Dedicated to <span className="text-[#8a7548]">Result.</span>
+            <br />
+            Trusted by <span className="text-[#8a7548]">Clients.</span>
+          </h1>
+          <div className="mt-5 flex items-center gap-3">
+            <span className="h-px w-12 bg-[#8a7548]" />
+            <span className="h-1.5 w-1.5 rotate-45 bg-[#8a7548]" />
+            <span className="h-px w-7 bg-[#8a7548]/50" />
+          </div>
+          <p className="mt-5 max-w-lg text-sm leading-7 text-[#F3F8F1]/70 sm:text-base">
+            Strategic legal counsel for businesses, entrepreneurs, and
+            individuals navigating complex legal matters in Indonesia.
+          </p>
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <button
+              onClick={() => navigate("/contact")}
+              className="group inline-flex items-center justify-center gap-3 rounded-sm bg-[#8a7548] px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:bg-[#A27A44] hover:shadow-[0_10px_30px_rgba(138,117,72,0.25)]"
+            >
+              Discuss Your Case
+              <ArrowRight
+                size={17}
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              />
+            </button>
+            <button
+              onClick={() => navigate("/practice")}
+              className="inline-flex items-center justify-center gap-3 rounded-sm border border-[#F3F8F1]/25 px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-[#F3F8F1] transition-all duration-300 hover:border-[#8a7548] hover:bg-[#8a7548]/10"
+            >
+              Our Services
+            </button>
+          </div>
+          <div className="mt-7 flex flex-wrap items-center gap-x-7 gap-y-3 border-t border-[#F3F8F1]/10 pt-5">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="h-4 w-4 text-[#8a7548]" />
+              <span className="text-xs text-[#F3F8F1]/60">
+                Professional Counsel
+              </span>
             </div>
-
-            {/* Description */}
-            <p className="mt-7 max-w-xl text-base leading-8 text-[#B8C0BB] sm:text-lg">
-              Professional, trusted legal support focused on your best
-              interests. We are here to provide legal protection and the right
-              solutions for addressing any issue.
-            </p>
-
-            {/* Buttons */}
-            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-              <button
-                onClick={() => navigate("/contact")}
-                className="group inline-flex items-center justify-center gap-3 rounded-sm bg-[#A27A44] px-7 py-4 text-sm font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:bg-[#B8925A] hover:shadow-[0_10px_30px_rgba(162,122,68,0.25)]"
-              >
-                Discuss Your Case
-                <ArrowRight
-                  size={18}
-                  className="transition-transform duration-300 group-hover:translate-x-1"
-                />
-              </button>
-
-              <button
-                onClick={() => navigate("/practice")}
-                className="inline-flex items-center justify-center gap-3 rounded-sm border border-[#B8925A]/40 px-7 py-4 text-sm font-semibold uppercase tracking-wider text-[#D6C8A9] transition-all duration-300 hover:border-[#B8925A] hover:bg-[#B8925A]/10"
-              >
-                Our Services
-              </button>
-            </div>
-
-            {/* Trust indicators */}
-            <div className="mt-12 flex flex-wrap gap-x-8 gap-y-4 border-t border-white/10 pt-7">
-              <div className="flex items-center gap-2.5">
-                <ShieldCheck className="h-5 w-5 text-[#B8925A]" />
-                <span className="text-sm text-[#AEB8B2]">
-                  Professional Counsel
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2.5">
-                <Scale className="h-5 w-5 text-[#B8925A]" />
-                <span className="text-sm text-[#AEB8B2]">Justice Focused</span>
-              </div>
+            <div className="flex items-center gap-2">
+              <Scale className="h-4 w-4 text-[#8a7548]" />
+              <span className="text-xs text-[#F3F8F1]/60">Justice Focused</span>
             </div>
           </div>
-
-          {/* RIGHT IMAGE */}
-          <div className="relative order-1 flex justify-center lg:order-2">
-            {/* Decorative frame */}
-            {/* <div className="absolute -right-3 -top-3 h-full w-full max-w-xl border border-[#B8925A]/30 sm:-right-5 sm:-top-5" /> */}
-
-            <div className="relative w-full max-w-xl overflow-hidden">
-              {/* Image */}
-              <img
-                src={Lawpict}
-                alt="Legal consultation"
-                className="h-120 w-full object-cover object-center grayscale-15 transition duration-700 hover:scale-[1.02] sm:h-140"
-                loading="eager"
-              />
-
-              {/* Image overlay */}
-              <div className="absolute inset-0 bg-linear-to-t from-[#071512]/70 via-transparent to-[#071512]/10" />
-
-              {/* Gold accent */}
-              <div className="absolute bottom-0 left-0 h-1 w-32 bg-[#B8925A]" />
-
-              {/* Quote card */}
-              <div className="absolute bottom-7 left-7 right-7 border border-white/10 bg-[#071512]/85 p-5 backdrop-blur-md sm:bottom-8 sm:left-8 sm:right-auto sm:max-w-sm">
-                <div className="mb-3 flex items-center gap-3">
-                  <Scale className="h-5 w-5 text-[#B8925A]" />
-
-                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#CBB994]">
-                    Our Principle
-                  </span>
-                </div>
-
-                <p className="font-serif text-lg italic leading-relaxed text-[#F4F1E8]">
-                  "Justice is not merely a right, but a responsibility we
-                  protect together."
-                </p>
-              </div>
-            </div>
-
-            {/* Decorative vertical line ????*/}
-            <div className="absolute -bottom-10 right-0 hidden h-28 w-px bg-[#B8925A]/50 lg:block" />
+          <div className="mt-5 flex items-center gap-3">
+            <span className="h-px w-10 bg-[#8a7548]" />
+            <span className="text-[10px] uppercase tracking-[0.18em] text-[#F3F8F1]/40">
+              Integrity · Strategy · Resolution
+            </span>
           </div>
         </div>
       </div>
+
+      {/* <div className="relative block h-56 lg:hidden">
+        <img
+          src={Lawpict}
+          alt="Our Firm"
+          className="h-full w-full object-cover object-center"
+        />
+
+        <div className="absolute inset-0 bg-linear-to-t from-[#001311] via-[#001311]/20 to-transparent" />
+      </div> */}
     </section>
   );
 }

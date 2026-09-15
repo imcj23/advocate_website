@@ -468,7 +468,7 @@ export default function About() {
                 </p>
 
                 <a
-                  href="https://www.google.com/maps/search/?api=1&query=Gedung+Ratu+Prabu+1+Jl+Letjen+TB+Simatupang+Kav+20+Cilandak+Jakarta+Selatan+12560"
+                  href="https://maps.app.goo.gl/Y5UZzxhX6oRaWB3X8?g_st=iw"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group mx-auto mt-5 flex w-fit items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#8a7548] transition-colors duration-300 hover:text-[#001311]"
@@ -509,7 +509,7 @@ export default function About() {
                 </p>
 
                 <a
-                  href="https://www.google.com/maps/search/?api=1&query=Business+Center+Adhya+Building+Jl+Jendral+Sudirman+Bukit+Indah+Sukajadi+Batam+29462"
+                  href="https://maps.app.goo.gl/674cj2jmF6x79q8c8?g_st=iw"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group mx-auto mt-5 flex w-fit items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#8a7548] transition-colors duration-300 hover:text-[#001311]"
