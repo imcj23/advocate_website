@@ -5,7 +5,7 @@ import Footer from "../../Components/Footer";
 import Discuss from "../../assets/discuss.jpg";
 
 export default function Contact() {
-  const whatsappNumber = "6282268853638";
+  const whatsappNumber = "6281391578817";
 
   const [formData, setFormData] = useState({
     nama: "",
@@ -176,7 +176,7 @@ Terima kasih.
                   </p>
 
                   <p className="mt-2 text-sm text-[#001311]/70">
-                    +62 000000000000
+                    +62 81391578817
                   </p>
                 </div>
               </div>
@@ -257,7 +257,8 @@ Terima kasih.
               </h2>
 
               <p className="mt-3 text-sm leading-6 text-[#001311]/50">
-                Please complete the following information so we can better understand your legal needs.
+                Please complete the following information so we can better
+                understand your legal needs.
               </p>
             </div>
 
@@ -329,25 +330,27 @@ Terima kasih.
                     Select Legal Needs
                   </option>
 
-                  <option value="Business & Corporate">Business & Corporate</option>
+                  <option value="Business & Corporate">
+                    Business & Corporate
+                  </option>
 
                   <option value="Contract & Commercial">
                     Contract & Commercial
                   </option>
 
-                  <option value="Dispute Resolution">
-                    Dispute Resolution
-                  </option>
+                  <option value="Dispute Resolution">Dispute Resolution</option>
 
                   <option value="Employment & Industrial Relations">
                     Employment & Industrial Relations
                   </option>
 
-                  <option value="Legal Opinion & Due Diligence">Legal Opinion & Due Diligence</option>
-                  <option value="Mergers & Acquisitions">Mergers & Acquisitions</option>
-                  <option value="Banking & Finance">
-                    Banking & Finance
+                  <option value="Legal Opinion & Due Diligence">
+                    Legal Opinion & Due Diligence
                   </option>
+                  <option value="Mergers & Acquisitions">
+                    Mergers & Acquisitions
+                  </option>
+                  <option value="Banking & Finance">Banking & Finance</option>
                   <option value="Regulatory & Compliance">
                     Regulatory & Compliance
                   </option>
