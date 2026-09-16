@@ -132,17 +132,13 @@ export default function Insight() {
             </div>
 
             <h1 className="text-4xl font-semibold leading-[1.04] tracking-[-0.035em] text-[#F3F8F1] sm:text-5xl md:text-6xl lg:text-7xl">
-              Perspectives
+              Legal Perspective
               <br />
-              on Law.
-              <br />
-              <span className="text-[#A27A44]">Insight for Business.</span>
+              <span className="text-[#A27A44]">Practical Clarity</span>
             </h1>
 
             <p className="mt-8 max-w-xl text-[15px] leading-8 text-[#D8E0DC] lg:text-[17px]">
-              Legal insights, regulatory developments, and strategic
-              perspectives to help you understand various legal issues in the
-              business world.
+              Practical legal insight for business, investors and individuals navigating complex legal matters in indonesia
             </p>
 
             <div className="mt-10 flex items-center gap-4">

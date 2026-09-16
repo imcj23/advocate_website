@@ -463,7 +463,6 @@ Terima kasih.
           </div>
         </div>
       </section>
-
       <Footer />
     </main>
   );

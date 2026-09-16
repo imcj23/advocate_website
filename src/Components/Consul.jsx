@@ -41,7 +41,7 @@ export default function ConsultationProcess() {
         <div className="mb-14 max-w-full">
           <div className="mb-4 flex items-center justify-center gap-3">
             <span className="h-px w-9 bg-[#001311]" />
-            <span className="text-xl font-bold uppercase tracking-[0.2em] text-[#001311]">
+            <span className="text-xl font-bold uppercase tracking-[0.2em] text-[#001311] text-center">
               Consultation Proces
             </span>
             <span className="h-px w-9 bg-[#001311]" />

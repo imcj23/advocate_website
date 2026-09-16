@@ -72,20 +72,20 @@ export default function Services() {
               return (
                 <div
                   key={service.title}
-                  className="group flex flex-col items-center justify-start gap-4 rounded-sm border border-white/10 bg-[#001311] p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#c9a96e]/60 hover:bg-[#102f2b] hover:shadow-lg"
+                  className="group flex flex-col items-center justify-start gap-4 rounded-sm border-2 border-[#c9a96e] bg-white p-5 text-center transition-all duration-300 "
                 >
                   {/* Icon */}
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-sm border border-[#c9a96e]/30 bg-[#123833] text-[#c9a96e] transition-all duration-300 group-hover:border-[#c9a96e] group-hover:bg-[#c9a96e] group-hover:text-[#0b2f2a]">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-sm border border-[#c9a96e]/50 bg-[#f5efe0] text-[#0b2f2a] transition-all duration-300 ">
                     <Icon size={21} strokeWidth={1.7} />
                   </div>
 
                   {/* Content */}
                   <div className="min-w-0">
-                    <h3 className="text-base font-semibold text-white">
+                    <h3 className="text-base font-semibold text-[#0b2f2a]">
                       {service.title}
                     </h3>
 
-                    <p className="mt-1 text-xs leading-5 text-white/50">
+                    <p className="mt-1 text-xs leading-5 text-[#0b2f2a]/60">
                       {service.description}
                     </p>
                   </div>
