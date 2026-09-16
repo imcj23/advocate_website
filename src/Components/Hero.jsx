@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router";
 import { ArrowRight, Scale, ShieldCheck } from "lucide-react";
 import Lawpict from "../assets/law2.jpg";
+import Logo from "../assets/logo.png";
 
 export default function Hero() {
   const navigate = useNavigate();
@@ -15,7 +16,21 @@ export default function Hero() {
           // loading="eager"
         />
         <div className="absolute inset-0 bg-linear-to-r from-[#001311] via-[#001311]/25 to-transparent" />
-          <div className="absolute inset-0 bg-black/10" />
+        <div className="absolute inset-0 bg-black/10" />
+        <div className="absolute inset-0 bg-black/45 lg:hidden" />
+        <div className="absolute inset-0 bg-linear-to-b from-[#001311]/70 via-[#001311]/40 to-[#001311]/70 lg:hidden" />
+      </div>
+
+      <div className="absolute right-0 top-1/2 z-10 hidden w-full -translate-y-1/2 lg:right-0 lg:block lg:w-[65%]">
+        <div className="flex items-center justify-center">
+          <div className="rounded-md bg-black/35 px-6 py-5 backdrop-blur-[2px] lg:px-8 lg:py-6">
+            <img
+              src={Logo}
+              alt="Firm Logo"
+              className="h-16 w-auto opacity-90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] sm:h-20 lg:h-24 xl:h-28"
+            />
+          </div>
+        </div>
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-14 sm:px-8 lg:px-8 lg:py-30">

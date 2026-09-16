@@ -124,9 +124,9 @@ export default function Insight() {
         <div className="relative z-10 mx-auto flex min-h-162.5 max-w-7xl items-center px-6 py-24 lg:min-h-180 lg:px-8 lg:py-32">
           <div className="max-w-3xl">
             <div className="mb-7 flex items-center gap-4">
-              <span className="h-px w-12 bg-[#8A7548]" />
+              <span className="h-px w-12 bg-[#A27A44]" />
 
-              <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#F3F8F1]">
+              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-[#F3F8F1]">
                 Legal Insights
               </span>
             </div>
@@ -136,7 +136,7 @@ export default function Insight() {
               <br />
               on Law.
               <br />
-              <span className="text-[#8A7548]">Insight for Business.</span>
+              <span className="text-[#A27A44]">Insight for Business.</span>
             </h1>
 
             <p className="mt-8 max-w-xl text-[15px] leading-8 text-[#D8E0DC] lg:text-[17px]">

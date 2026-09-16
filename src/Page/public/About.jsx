@@ -21,25 +21,17 @@ const API_URL = "http://localhost:3500";
 export default function About() {
   const [profile, setProfile] = useState(null);
   const [loadingProfile, setLoadingProfile] = useState(true);
-
-  // =====================================================
-  // FETCH DATA ADVOCATE DARI BACKEND
-  // =====================================================
   useEffect(() => {
     const fetchProfile = async () => {
       try {
         setLoadingProfile(true);
-
         const response = await fetch(`${API_URL}/advocate`);
         const result = await response.json();
-
         console.log("PUBLIC ADVOCATE STATUS:", response.status);
         console.log("PUBLIC ADVOCATE RESPONSE:", result);
-
         if (!response.ok) {
           throw new Error(result?.message || "Gagal mengambil data advocate");
         }
-
         setProfile(result?.data || null);
       } catch (error) {
         console.error("FETCH PUBLIC ADVOCATE ERROR:", error);
@@ -52,9 +44,6 @@ export default function About() {
     fetchProfile();
   }, []);
 
-  // =====================================================
-  // URL FOTO DARI BACKEND
-  // =====================================================
   const getImageUrl = (foto) => {
     if (!foto) return "";
 
@@ -68,10 +57,6 @@ export default function About() {
 
     return `${API_URL}${foto}`;
   };
-
-  // =====================================================
-  // PHILOSOPHY
-  // =====================================================
   const philosophyItems = [
     {
       title: "Understand",
@@ -92,10 +77,6 @@ export default function About() {
         "The ultimate goal is resolution. We are committed to providing support until the most appropriate legal solution is reached for our clients.",
     },
   ];
-
-  // =====================================================
-  // WHAT MAKES US DIFFERENT
-  // =====================================================
   const differentItems = [
     {
       title: "Led By Partners",
@@ -126,10 +107,6 @@ export default function About() {
   return (
     <section id="about" className="scroll-mt-16">
       <Navbar />
-
-      {/* =====================================================
-          HERO
-      ====================================================== */}
       <div className="relative overflow-hidden bg-[#001311]">
         <div className="absolute inset-y-0 right-0 w-full lg:w-[65%]">
           <img
@@ -145,22 +122,21 @@ export default function About() {
         <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
           <div className="max-w-3xl">
             <div className="mb-6 flex items-center gap-3">
-              <span className="h-px w-10 bg-[#F3F8F1]" />
+              <span className="h-px w-10 bg-[#A27A44]" />
 
               <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#F3F8F1]">
-                About Our Firm
+                About DSP
               </span>
             </div>
 
             <h1 className="text-4xl font-semibold leading-[1.08] tracking-tight text-[#F3F8F1] sm:text-5xl lg:text-7xl">
-              Clear Counsel.
+              A Boutique Legal Practice
               <br />
-              <span className="text-[#8a7548]">Strong Resolution.</span>
+              <span className="text-[#A27A44]"> Built Around Solutions.</span>
             </h1>
 
             <p className="mt-8 max-w-xl text-base leading-8 text-[#F3F8F1] lg:text-lg">
-              We are a law firm that prioritizes analytical acumen, measurable
-              legal strategies, and client-oriented solutions.
+              DSP Law Office is a boutique legal practice providing strategic and practical legal counsel across business, corporate and dispute matters in Indonesia.
             </p>
 
             <div className="mt-10 flex items-center gap-4">

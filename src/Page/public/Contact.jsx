@@ -1,11 +1,59 @@
-import { useState } from "react";
-import { ArrowUpRight, Mail, MapPin, Phone, Clock, Scale } from "lucide-react";
+import { useState, useEffect } from "react";
+import {
+  ArrowUpRight,
+  Mail,
+  MapPin,
+  Phone,
+  Clock,
+  Scale,
+} from "lucide-react";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 import Discuss from "../../assets/discuss.jpg";
 
 export default function Contact() {
-  const whatsappNumber = "6281391578817";
+  const [contact, setContact] = useState({
+    no_hp: "",
+    email_office: "",
+  });
+
+  const [loadingContact, setLoadingContact] = useState(true);
+
+  useEffect(() => {
+    const fetchContact = async () => {
+      try {
+        const response = await fetch("http://localhost:3500/advocate");
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            result.message || "Gagal mengambil data contact",
+          );
+        }
+
+        // Backend /advocate mengembalikan data di dalam result.data
+        const advocate = result?.data;
+
+        if (!advocate) {
+          throw new Error("Data advocate tidak ditemukan.");
+        }
+
+        console.log("DATA CONTACT:", advocate);
+
+        setContact({
+          no_hp: advocate.no_hp || "",
+          email_office: advocate.email_office || "",
+        });
+      } catch (error) {
+        console.error("Error:", error);
+      } finally {
+        setLoadingContact(false);
+      }
+    };
+
+    fetchContact();
+  }, []);
 
   const [formData, setFormData] = useState({
     nama: "",
@@ -32,7 +80,6 @@ export default function Contact() {
 
     const message = `
 Halo, saya ingin melakukan konsultasi hukum.
-
 *Data Pemohon*
 Nama: ${formData.nama}
 Nomor Telepon: ${formData.telepon}
@@ -49,10 +96,20 @@ Saya berharap dapat memperoleh informasi dan arahan terkait kebutuhan hukum ters
 Terima kasih.
     `.trim();
 
+    // Nomor WhatsApp diambil dari database
+    // melalui endpoint /advocate
+    const whatsappNumber = String(contact.no_hp || "").replace(/\D/g, "");
+
+    if (!whatsappNumber) {
+      alert("Nomor WhatsApp belum tersedia.");
+      return;
+    }
+
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
       message,
     )}`;
 
+    // Hanya satu kali membuka WhatsApp
     window.open(whatsappUrl, "_blank");
   };
 
@@ -137,6 +194,7 @@ Terima kasih.
                   </p>
                 </div>
               </div>
+
               <div className="flex gap-4 border-t border-[#d9dedb] pt-5">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[#A27A44]/40">
                   <MapPin
@@ -176,7 +234,11 @@ Terima kasih.
                   </p>
 
                   <p className="mt-2 text-sm text-[#001311]/70">
-                    +62 81391578817
+                    {loadingContact
+                      ? "Loading..."
+                      : contact.no_hp
+                        ? `+${contact.no_hp}`
+                        : "-"}
                   </p>
                 </div>
               </div>
@@ -197,7 +259,9 @@ Terima kasih.
                   </p>
 
                   <p className="mt-2 text-sm text-[#001311]/70">
-                    info@dsplawyer.com
+                    {loadingContact
+                      ? "Loading..."
+                      : contact.email_office || "-"}
                   </p>
                 </div>
               </div>
@@ -314,6 +378,7 @@ Terima kasih.
                   className="w-full border border-[#d9dedb] bg-[#F8FAF8] px-4 py-3 text-sm outline-none transition focus:border-[#A27A44]"
                 />
               </div>
+
               <div>
                 <label className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.15em] text-[#001311]/55">
                   Legal Requirements
@@ -338,7 +403,9 @@ Terima kasih.
                     Contract & Commercial
                   </option>
 
-                  <option value="Dispute Resolution">Dispute Resolution</option>
+                  <option value="Dispute Resolution">
+                    Dispute Resolution
+                  </option>
 
                   <option value="Employment & Industrial Relations">
                     Employment & Industrial Relations
@@ -347,10 +414,15 @@ Terima kasih.
                   <option value="Legal Opinion & Due Diligence">
                     Legal Opinion & Due Diligence
                   </option>
+
                   <option value="Mergers & Acquisitions">
                     Mergers & Acquisitions
                   </option>
-                  <option value="Banking & Finance">Banking & Finance</option>
+
+                  <option value="Banking & Finance">
+                    Banking & Finance
+                  </option>
+
                   <option value="Regulatory & Compliance">
                     Regulatory & Compliance
                   </option>
@@ -391,6 +463,7 @@ Terima kasih.
           </div>
         </div>
       </section>
+
       <Footer />
     </main>
   );

@@ -201,18 +201,16 @@ export default function Practice() {
             />
 
             <div className="absolute inset-0 bg-linear-to-r from-[#001311] via-[#001311]/70 to-transparent" />
-
             <div className="absolute inset-0 bg-black/10" />
           </div>
 
           <div className="relative mx-auto max-w-7xl px-6 py-20 sm:px-8 md:py-24 lg:px-8 lg:py-28">
             <div className="max-w-2xl">
               <div className="mb-5 flex items-center gap-4">
-                <span className="text-xs font-semibold tracking-[0.25em] text-[#c9a96e]">
+                <span className="h-px w-12 bg-[#A27A44]" />
+                <span className="text-xs font-semibold tracking-[0.25em] text-[#F3F8F1]">
                   PRACTICE AREAS
                 </span>
-
-                <span className="h-px w-12 bg-[#c9a96e]" />
               </div>
 
               <h1 className="font-serif text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
