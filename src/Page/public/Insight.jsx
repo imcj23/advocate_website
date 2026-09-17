@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import { ArrowUpRight, ArrowRight, CalendarDays, Clock3 } from "lucide-react";
+import {
+  ArrowUpRight,
+  ArrowRight,
+  CalendarDays,
+  Clock3,
+  Search,
+} from "lucide-react";
 
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
@@ -8,20 +14,21 @@ import background from "../../assets/insight.jpg";
 const API_URL = "http://localhost:3500/article/public";
 const BACKEND_URL = "http://localhost:3500";
 
-const categories = [
-  "All",
-  "Legal Update",
-  "Corporate",
-  "Commercial",
-  "Employment",
-  "Dispute Resolution",
-  "Regulatory",
-];
+// const categories = [
+//   "All",
+//   "Legal Update",
+//   "Corporate",
+//   "Commercial",
+//   "Employment",
+//   "Dispute Resolution",
+//   "Regulatory",
+// ];
 
 export default function Insight() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  // const [selectedCategory, setSelectedCategory] = useState("All")
+  const [searchQuery, setSearchQuery] = useState("");
   const [selectedArticle, setSelectedArticle] = useState(null);
 
   // =====================================================
@@ -86,11 +93,15 @@ export default function Insight() {
   // FILTER ARTICLE
   // =====================================================
 
-  const filteredArticles =
-    selectedCategory === "All"
-      ? articles
-      : articles.filter((article) => article.kategori === selectedCategory);
+  const filteredArticles = articles.filter((article) => {
+    const search = searchQuery.toLowerCase();
 
+    return (
+      article.judul.toLowerCase().includes(search) ||
+      article.excerpt?.toLowerCase().includes(search) ||
+      article.kategori?.toLowerCase().includes(search)
+    );
+  });
   // =====================================================
   // FEATURED ARTICLE
   // Artikel Published terbaru
@@ -138,7 +149,8 @@ export default function Insight() {
             </h1>
 
             <p className="mt-8 max-w-xl text-[15px] leading-8 text-[#D8E0DC] lg:text-[17px]">
-              Practical legal insight for business, investors and individuals navigating complex legal matters in indonesia
+              Practical legal insight for business, investors and individuals
+              navigating complex legal matters in indonesia
             </p>
 
             <div className="mt-10 flex items-center gap-4">
@@ -290,20 +302,20 @@ export default function Insight() {
 
               {/* FILTER */}
 
-              <div className="flex flex-wrap gap-2">
-                {categories.map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => setSelectedCategory(category)}
-                    className={`rounded-full border px-4 py-2 text-xs font-medium transition ${
-                      selectedCategory === category
-                        ? "border-[#0B2F2A] bg-[#0B2F2A] text-white"
-                        : "border-[#D9DEDB] bg-white text-gray-500 hover:border-[#A27A44] hover:text-[#0B2F2A]"
-                    }`}
-                  >
-                    {category}
-                  </button>
-                ))}
+              {/* SEARCH */}
+
+              <div className="w-full lg:w-auto">
+                <div className="flex items-center rounded-full border border-[#D9DEDB] bg-white px-4 py-2.5 transition focus-within:border-[#A27A44]">
+                  <Search className="mr-2 h-4 w-4 text-[#71827B]" />
+
+                  <input
+                    type="text"
+                    placeholder="Search insights..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full bg-transparent text-sm text-[#0B2F2A] outline-none placeholder:text-gray-400 lg:w-64"
+                  />
+                </div>
               </div>
             </div>
           </div>
